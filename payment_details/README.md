@@ -64,4 +64,3 @@
 
 <!-- <img src="payment_details/p1 (17).png" style="width: 500px; height: auto;" alt="결제상세17"> -->
 
-<img src="p1 (17).png" style="width: 500px; height: auto;" alt="결제상세17">
