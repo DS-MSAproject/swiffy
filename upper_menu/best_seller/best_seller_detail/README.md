@@ -1,0 +1,12 @@
+<img src="best_seller_detail1.png" style="width: 500px; height: auto;" alt="설명">
+<img src="best_seller_detail2.png" style="width: 500px; height: auto;" alt="설명">
+<img src="best_seller_detail3.png" style="width: 500px; height: auto;" alt="설명">
+<img src="best_seller_detail4.png" style="width: 500px; height: auto;" alt="설명">
+<img src="best_seller_detail5.png" style="width: 500px; height: auto;" alt="설명">
+<img src="best_seller_detail6.png" style="width: 500px; height: auto;" alt="설명">
+<img src="best_seller_detail7.png" style="width: 500px; height: auto;" alt="설명">
+<img src="best_seller_detail8.png" style="width: 500px; height: auto;" alt="설명">
+<img src="best_seller_detail9.png" style="width: 500px; height: auto;" alt="설명">
+<img src="best_seller_detail10.png" style="width: 500px; height: auto;" alt="설명">
+<img src="best_seller_detail11.png" style="width: 500px; height: auto;" alt="설명">
+<img src="best_seller_detail12.png" style="width: 500px; height: auto;" alt="설명">
