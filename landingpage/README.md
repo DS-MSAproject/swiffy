@@ -4,14 +4,14 @@
 ## 지금은 사용자에게 렌더링하는 페이지
 ### 1\. API 개요 (선택 사항)
 
-> **Base URL:** `https://api.example.com/v1`  
+> **Base URL:** `https://api.example.com/api/v1`  
 > **Authentication:** JWT Access/Refresh token (Cookie 헤더)
 
 -----
 
 ### 2\. 엔드포인트 상세 (Example)
 
-### `GET /banneritems/`
+### `GET` /api/v1/main
 
 사용자의 상세 정보를 조회합니다.
 
