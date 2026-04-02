@@ -232,10 +232,14 @@
 
 <img src="4.png" style="width: 800px; height: auto;" alt="설명">
 
-### 1\. API 개요 (선택 사항)
+### 1\. API 개요
+
+> **Base URL:** `https://api.example.com/v1`  
+> **Authentication:** Bearer Token (Header: `Authorization`)
+
 -----
 
-### 2\. 엔드포인트 상세 (Example)
+### 2\. 엔드포인트 상세 
 
 ### `GET /users/{id}`
 
@@ -274,6 +278,11 @@
   * **Code:** 401 UNAUTHORIZED
   * **Content:** `{ "message": "Invalid token" }`
 
+
+#### 참고사항
+
+* 타이틀, 타이틀이미지Url, content, content 이미지(상세조회는 content이미지카드로 표현) 
+* 
 -----
 
 ### 1\. API 개요 (선택 사항)
