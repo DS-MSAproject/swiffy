@@ -6,7 +6,7 @@
 | ------ | --- |
 | 이름   | ... |
 
-<img src="2.png" style="width: 500px; height: auto;" alt="설명
+<img src="2.png" style="width: 500px; height: auto;" alt="설명">
 
 ```
 적립금
