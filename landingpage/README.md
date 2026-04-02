@@ -85,6 +85,94 @@
 
 
 <img src="3.png" style="width: 800px; height: auto;" alt="설명">
+### 1\. API 개요 (선택 사항)
+
+> **Base URL:** `https://api.example.com/api/v1`  
+> **Authentication:** JWT Access/Refresh token (Cookie 헤더)
+
+-----
+
+### 2\. 엔드포인트 상세 (Example)
+
+### `GET` /api/v1/main
+
+사용자의 상세 정보를 조회합니다.
+
+#### **Request Parameters**
+
+| Name | Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| - | - | - | - |
+
+#### **Request Body**
+```json
+{
+  
+}
+```
+
+
+#### **Success Response**
+
+  * **Code:** 200 OK
+  * **Content:**
+
+<!-- end list -->
+
+```json
+{
+  {
+    "id": "success",
+    "title":
+    "image url":
+    "content":
+    "price":
+  }
+
+ {
+    "id": "success",
+    "title":
+    "image url":
+    "content":
+    "price":
+  }
+{
+    "id": "success",
+    "title":
+    "image url":
+    "content":
+    "price":
+  }
+{
+    "id": "success",
+    "title":
+    "image url":
+    "content":
+    "price":
+  }
+{
+    "id": "success",
+    "title":
+    "image url":
+    "content":
+    "price":
+  }
+  
+  
+}
+```
+
+#### **Error Response**
+
+  * **Code:** 404 NOT FOUND
+  * **Content:** `{ "message": "User not found" }`
+  * **Code:** 401 UNAUTHORIZED
+  * **Content:** `{ "message": "Invalid token" }`
+
+#### 참고사항
+
+-----
+
 <img src="4.png" style="width: 800px; height: auto;" alt="설명">
 <img src="5.png" style="width: 800px; height: auto;" alt="설명">
 <img src="6.png" style="width: 800px; height: auto;" alt="설명">
