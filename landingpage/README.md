@@ -1,4 +1,5 @@
 <img src="1.png" style="width: 800px; height: auto;" alt="설명">
+
 # 추천 상품 
 ## 관리자 추천 상품 페이지 필요
 ### 추천 상품 등록 데이터
