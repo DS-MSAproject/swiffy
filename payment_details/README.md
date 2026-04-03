@@ -64,6 +64,7 @@
 | couponCount | Integer | - | 유저가 가지고 있는 갯수 |
 | 쿠폰 결제 조건 | String | - | - |
 | 적립금 | Integer | - | - |
+| 적립금사용 여부 | Integer | - | - |
 | 적용금액 | Integer | - | 총 할인+쿠폰+적립가격 |
 | 결제정보 | Integer | - | 주문상품 가격 / 배송비 / 할인 부가결제 / 최종 결제금액 |
 | 적립혜택 | Integer | - | 1% 소수점 버림 |
@@ -75,7 +76,6 @@
 | 배송지 저장유무 | Boolean | - | - |
 | 할인코드 | String | - | 쿠폰과 할인코드는 동시적용 불가 |
 | 쿠폰적용 여부 |  | - | - |
-| 적립금사용 여부 | Integer | - | - |
 | 결제수단 | String | - | - |
 
 
@@ -161,9 +161,90 @@
 
 <img src="p1 (15).png" style="width: 500px; height: auto;" alt="결제상세15">
 
+=======
+## 엔드포인트 상세
+
+`POST` /api/v1/payment
+
+
+#### **Request Parameters**
+
+| Name | Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| 주문번호 | String | - | - |
+| 결제금액 | String | - | "%,d원" |
+| 결제수단 | String | - | - |
+| 배송지 | String | - | - |
+| 받는사람 | Integer | - | - |
+| 주소 | Integer | - | - |
+| phone | Integer | - | |
+| email | String | - | - |
+| messge | Integer | - | - |
+| 주문상품 | Integer | - | - |
+| productImageUrl | String | - | - |
+| productName | String | - | - |
+| option | Integer | - | 상품갯수 |
+| price | Integer | - | - |
+| 결제정보 | Integer | - | - |
+| 주문상품 | String | - |  |
+| 배송비 | Integer | - |  |
+| 결제금액 | String | - | - |
+| 회원 적립금 | Integer | - | - |
+| 적립 예정금액 | Integer | - |  |
+
+#### **Request Body**
+```json
+{
+
+}
+```
+
+
+#### **Success Response**
+
+  * **Code:** 200 OK
+  * **Content:**
+
+<!-- end list -->
+
+```json
+{
+  "status": "success",
+  "data": {
+    "주문번호" : ,
+    "결제금액" : "",
+    "결제수단" : "",
+    "받는사람" : ,
+    "주소" : ,
+    "phone" : "",
+    "email" : "",
+    "messge" : ,
+    "productImageUrl" : ,
+    "productName" : ,
+    "option" : ,
+    "price" : ,
+    "주문상품" : ,
+    "배송비" : ,
+    "결제금액" : ,
+    "적립금" : ,
+    "적립 예정금액" : 
+  }
+}
+```
+
+#### **Error Response**
+
+  * **Code:** 404 NOT FOUND
+  * **Content:** `{ "message": "User not found" }`
+  * **Code:** 401 UNAUTHORIZED
+  * **Content:** `{ "message": "Invalid token" }`
+
+#### 참고사항
+
+-----
+
 <!-- <img src="payment_details/p1 (16).png" style="width: 500px; height: auto;" alt="결제상세16"> -->
 
 <img src="p1 (16).png" style="width: 500px; height: auto;" alt="결제상세16">
 
 <!-- <img src="payment_details/p1 (17).png" style="width: 500px; height: auto;" alt="결제상세17"> -->
-
