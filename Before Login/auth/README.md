@@ -2,7 +2,7 @@
 
 **Base URL:** `https://api.example.com/v1`  
 **Authentication:** `JWT Access/Refresh Token (Cookie Header)`
-**CSRF** POST 요청 시 X-XSRF-TOKEN 헤더 필수
+**CSRF:** POST 요청 시 X-XSRF-TOKEN 헤더 필수
 
 #### **소셜 로그인**
 
