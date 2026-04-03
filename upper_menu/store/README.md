@@ -14,7 +14,7 @@
 <img src="store_all_page2.png" style="width: 500px; height: auto;" alt="설명">
 
 
-### `GET` /api/v1/category/all
+### `GET` /api/v1/store/category/all
 
 
 =======
@@ -83,7 +83,7 @@
 
 ---
 
-### `GET` /api/v1/category/{categoryName}/{subcategoryName}
+### `GET` /api/v1/store/category/{categoryName}/{subcategoryName}
 
 
 =======
