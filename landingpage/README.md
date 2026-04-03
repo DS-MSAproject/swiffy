@@ -240,6 +240,18 @@ productInfo :
 
 <!-- end list -->
 
+RequestBody
+```json
+{
+    "Id" : ,
+    "title": "",
+    "mainIamgeUrl": "",
+    "content": "",
+    "contentImageUrl": "
+  }
+}
+```
+
 ```json
 {
   "status": "success",
@@ -249,19 +261,7 @@ productInfo :
 }
 ```
 
-RequestBody
-```json
-{
-  "status": "success",
-  "data": {
-    "Id" : ,
-    "title": "",
-    "mainIamgeUrl": "",
-    "content": "",
-    "contentImageUrl": "
-  }
-}
-```
+
 
 #### **Error Response**
 
@@ -278,55 +278,6 @@ RequestBody
 -----
 
 <img src="5.png" style="width: 800px; height: auto;" alt="설명">
-
------
-
-사용자의 상세 정보를 조회합니다.
-
-#### **Request Parameters**
-
-| Name | Type | Required | Description |
-| :--- | :--- | :---: | :--- |
-| `id` | `Integer` | ✅ | 사용자의 고유 ID (Path Variable) |
-| `include_posts` | `Boolean` | ❌ | 작성한 포스트 포함 여부 (Query Param) |
-
-#### **Success Response**
-
-  * **Code:** 200 OK
-  * **Content:**
-
-<!-- end list -->
-
-Response
-```json
-{
-  "imageUrl" : "" 
-}
-```
-
-RequestBody
-```json
-{
-  "status": "success",
-  "data": {
-    "Id" : ,
-    "title": "",
-    "mainIamgeUrl": "",
-    "content": "",
-    "contentImageUrl": ""
-  }
-}
-```
-
-#### **Error Response**
-
-  * **Code:** 404 NOT FOUND
-  * **Content:** `{ "message": "User not found" }`
-  * **Code:** 401 UNAUTHORIZED
-  * **Content:** `{ "message": "Invalid token" }`
-
-
-#### 참고사항
 
 -----
 
