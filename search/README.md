@@ -16,6 +16,7 @@
     "인기 검색어 눌렀을 때 들어갈 Url": "",
   }
 {
+```
 
 <img src="./s2.png" style="width: 500px; height: auto;" alt="상품상세">
 <img src="./s3.png" style="width: 500px; height: auto;" alt="채팅목록">
