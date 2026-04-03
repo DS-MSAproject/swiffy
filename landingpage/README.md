@@ -177,44 +177,30 @@ productInfo :
 ```json
 {
   {
-    "id": "success",
-    "title":
-    "image url":
-    "productInfo"
-    "content":
-    "price":
+    "produtpageinfo : ~~
+    (etc..)
+  }
   }
 
  {
-    "id": "success",
-    "title":
-    "image url":
-    "content":
-    "price":
+    "produtpageinfo : ~~
+    (etc..)
+  }
   }
 {
-    "id": "success",
-    "title":
-    "image url":
-    "productInfo"
-    "content":
-    "price":
+    "produtpageinfo : ~~
+    (etc..)
+  }
   }
 {
-    "id": "success",
-    "title":
-    "image url":
-    "productInfo"
-    "content":
-    "price":
+    "produtpageinfo : ~~
+    (etc..)
+  }
   }
 {
-    "id": "success",
-    "title":
-    "image url":
-    "productInfo"
-    "content":
-    "price":
+    "produtpageinfo : ~~
+    (etc..)
+  }
   }
 }
 ```
