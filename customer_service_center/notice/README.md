@@ -5,7 +5,7 @@
 | `Authorization` | `JWT(AccessToken/RefreshToken), Cookie` | ✅ | API 접근을 위한 인증 토큰 |
 | `Accept` | `application/json` | ✅ | 응답받을 데이터 형식 지정 |
 
-### `GET` /api/v1/notice
+### `GET` /api/v1/board/notice
 
 <img src="./n1.png" style="width: 500px; height: auto;" alt="notice">
 
