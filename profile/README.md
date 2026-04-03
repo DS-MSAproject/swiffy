@@ -1,7 +1,6 @@
 ### 1. API 개요
 > **Base URL:** https://api.example.com/api/v1
 
-> **Authentication:** Bearer Token (Header: Authorization: Bearer {YOUR_TOKEN})
 
 <img src="1.png" style="width: 500px; height: auto;" alt="설명">
 <img src="2.png" style="width: 500px; height: auto;" alt="설명">
