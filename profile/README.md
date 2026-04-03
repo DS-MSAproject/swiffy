@@ -142,7 +142,71 @@ Res
 구매후기 (없으면 구매후기 작성 페이지로)
 주문조회 10개씩
 ```
+### 엔드포인트 상세
+```GET /orders{order_number}```
+#### **Request Headers**
+| Name | Value / Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| `Authorization` | `Bearer {token}` | ✅ | API 접근을 위한 인증 토큰 |
+| `Accept` | `application/json` | ✅ | 응답받을 데이터 형식 지정 |
 
+#### **Request Parameters**
+| Name | Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| `order_nember` | `String` | ✅ | 조회를 원하는 주문 번호 (Path Variable) |
+
+#### **Success Response**
+* **Code:** `200 OK`
+* **Content:**
+```json
+{
+  "status": "success",
+  "data": {
+    "order_info": {
+      "order_number": "20260403-0000123",
+      "order_date": "2026-04-03T14:20:00Z",
+      "orderer_name": "김선국",
+      "order_status": "DELIVERED",
+      "order_status_text": "배송완료",
+      "total_item_count": 3
+    },
+    "order_items": [
+      {
+        "product_id": 501,
+        "image_url": "https://cdn.petfood.com/products/salmon_01.jpg",
+        "title": "[유기농] 프리미엄 연어&고구마 건식 사료",
+        "quantity": 1,
+        "option": "중량: 5kg / 알갱이: 소립",
+        "status": "배송완료"
+      }
+    ],
+    "payment_info": {
+      "paid_amount": 45000,
+      "discount_amount": 5000,
+      "shipping_fee": 3000,
+      "estimated_total_amount": 43000
+    },
+    "shipping_info": {
+      "recipient_name": "김선국",
+      "zip_code": "48058",
+      "base_address": "부산광역시 해운대구 우동",
+      "detail_address": "센텀중앙로 123",
+      "phone_number": "010-1234-5678",
+      "shipping_message": "문 앞에 놓아주세요."
+    },
+    "refund_info": {
+      "product_name": "가수분해 닭가슴살 져키",
+      "quantity": 1,
+      "refund_date": "2026-04-05T10:00:00Z",
+      "refund_status": "COMPLETED",
+      "refund_status_text": "환불완료",
+      "total_refund_amount": 12000,
+      "refund_method": "신용카드 부분취소"
+    }
+  }
+}
+```
+### 회의 내용
 상세보기
 ```
 주문번호
@@ -158,6 +222,69 @@ Res
 
 <img src="3_1.png" style="width: 500px; height: auto;" alt="설명">
 
+### 엔드포인트 상세
+```GET /orders/{order_number}/cs-history```
+#### **Request Headers**
+| Name | Value / Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| `Authorization` | `Bearer {token}` | ✅ | API 접근을 위한 인증 토큰 |
+| `Accept` | `application/json` | ✅ | 응답받을 데이터 형식 지정 |
+
+#### **Success Response**
+* **Code:** `200 OK`
+* **Content:**
+```json
+{
+  "status": "success",
+  "data": {
+    "order_number": "20260403-0000123",
+    "cs_summary": {
+      "has_history": true,
+      "cancel_count": 1,
+      "exchange_count": 1,
+      "return_count": 0
+    },
+    "cancellation_details": [
+      {
+        "cancel_id": "CAN-9982",
+        "product_name": "[리틀버디] 고단백 연어 사료 2kg",
+        "quantity": 1,
+        "reason": "단순 변심 (주문 실수)",
+        "request_date": "2026-04-03T15:00:00Z",
+        "status": "COMPLETED",
+        "status_text": "취소 완료"
+      }
+    ],
+    "exchange_details": [
+      {
+        "exchange_id": "EXC-1102",
+        "original_product": "가수분해 닭가슴살 져키",
+        "exchange_product": "가수분해 오리고기 져키",
+        "reason": "상품 오배송 (맛 변경 요청)",
+        "status": "RESIPPING",
+        "status_text": "교환 상품 배송 중",
+        "reshipping_tracking_number": "CJ대한통운 123456789",
+        "request_date": "2026-04-04T10:00:00Z"
+      }
+    ],
+    "return_details": [
+      {
+        "return_id": "RET-5541",
+        "product_name": "프리미엄 덴탈껌 (30개입)",
+        "quantity": 1,
+        "reason": "상품 파손 (포장지 훼손)",
+        "pickup_status": "PICKUP_COMPLETED",
+        "pickup_status_text": "수거 완료",
+        "refund_status": "PROCESSING",
+        "refund_status_text": "환불 처리 중",
+        "request_date": "2026-04-05T09:30:00Z"
+      }
+    ]
+  }
+}
+```
+
+### 회의내용
 ```
 취소/교환반품 내역
 위와 동일
@@ -168,11 +295,58 @@ Res
 기간 (오늘 / 1개월 / 3개월 / 6개월 )
 상세날짜 정보
 ```
-
-
+-----------------------------------------------------------------------
 <img src="4.png" style="width: 500px; height: auto;" alt="설명">
 
-## 회원정보 수정
+### 엔드포인트 상세
+```PUT /users/{id}/profile```
+
+#### **Request Headers**
+| Name | Value / Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| `Authorization` | `Bearer {token}` | ✅ | 본인 확인을 위한 인증 토큰 |
+| `Content-Type` | `application/json` | ✅ | 요청 본문의 데이터 형식 |
+
+#### **Request Body (JSON)**
+| Name | Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| `name` | `String` | ✅ | 변경할 실명 |
+| `phone_number` | `String` | ✅ | 휴대전화 번호 (010-0000-0000) |
+| `status` | `String` | ✅ | 이메일 주소 (형식 검증 필요) |
+| `page` | `Object` | ❌ | 주소 정보 (입력 시에만 업데이트) |
+| `marketing_consent` | `Object` | ✅ | 수신 동의 여부 (SMS, Email) |
+
+#### **Request Body Example**
+```json
+{
+  "name": "김선국",
+  "phone_number": "010-1234-5678",
+  "email": "seonguk@example.com",
+  "address": {
+    "zip_code": "48058",
+    "base_address": "부산광역시 해운대구 우동",
+    "detail_address": "센텀중앙로 123"
+  },
+  "marketing_consent": {
+    "sms_allowed": true,
+    "email_allowed": false
+  }
+}
+```
+#### Success Response
+* **Code:** `200 OK`
+* **Content:**
+```json
+{
+  "status": "success",
+  "message": "회원 정보가 성공적으로 수정되었습니다.",
+  "data": {
+    "updated_at": "2026-04-03T17:15:00Z"
+  }
+}
+```
+### 회의내용
+#### 회원정보 수정
 
 ```
 아이디
