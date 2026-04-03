@@ -15,11 +15,11 @@
 <img src="./n4.png" style="width: 500px; height: auto;" alt="notice">
 
 ---
-#### **Response Headers**
+#### **Request Headers**
 
-| Name | Value | Required | Description |
+| Name | Value/Type | Required | Description |
 | :--- | :--- | :---: | :--- |
-| Content-Type | application/json | ✅ | 응답 데이터 형식 |
+| Accept | application/json | ✅ | 응답 받을 데이터 형식 |
 
 #### **Request Parameters**
 
@@ -34,6 +34,11 @@
 #### **Request Body**
 ```json
 ```
+#### **Response Headers**
+
+| Name | Value | Description |
+| :--- | :--- | :--- |
+| Content-Type | application/json | 응답 데이터 형식 |
 
 #### **Success Response**
 
@@ -83,11 +88,11 @@
 ### `GET` /api/v1/board/notice/{id}
 
 
-#### **Response Headers**
+#### **Request Headers**
 
-| Name | Value | Required | Description |
+| Name | Value/Type | Required | Description |
 | :--- | :--- | :---: | :--- |
-| Content-Type | application/json | ✅ | 응답 데이터 형식 |
+| Accept | application/json | ✅ | 응답 받을 데이터 형식 |
 
 #### **Request Parameters**
 
@@ -99,6 +104,12 @@
 
 ```json
 ```
+
+#### **Response Headers**
+
+| Name | Value | Description |
+| :--- | :--- | :--- |
+| Content-Type | application/json | 응답 데이터 형식 |
 
 #### **Success Response**
 
@@ -129,3 +140,56 @@
 <img src="./n16%20(2).png" style="width: 500px; height: auto;" alt="notice">
 <img src="./n17%20(2).png" style="width: 500px; height: auto;" alt="notice">
 <img src="./n18.png" style="width: 500px; height: auto;" alt="notice">
+
+---
+
+### `GET` /api/v1/board/notice/{id}
+
+#### **Request Headers**
+
+| Name | Value/Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| Accept | application/json | ✅ | 응답 받을 데이터 형식 |
+
+#### **Request Parameters**
+
+| Name | Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| id | Integer | - | 이벤트 게시글 고유 ID (Path Variable) |
+
+#### **Request Body**
+```json
+```
+
+#### **Response Headers**
+
+| Name | Value | Description |
+| :--- | :--- | :--- |
+| Content-Type | application/json | 응답 데이터 형식 |
+
+#### **Success Response**
+
+  * **Code:** 200 OK
+  * **Content:**
+
+```json
+{
+  "status": "success",
+  "data": {
+    "id": ,
+    "title": "",
+    "contentImageUrl": "",
+    "isPinned": true,
+    "coupons": [
+      {
+        "couponId": ,
+        "description": "",
+        "discountAmount": ,
+        "discountType": "",
+        "minOrderAmount": ,
+        "isDownloaded": ,
+        "expiredAt": ""
+      }
+  }
+}
+```
