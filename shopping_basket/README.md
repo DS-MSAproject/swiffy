@@ -35,6 +35,8 @@
 | totalDiscountPrice | integer | - | - |
 | 적립예정금액 | integer | - | - |
 | 회원적립금 | integer | - | - |
+| wishlist |  | - | - |
+| 전체상품 주문하기 |  | - | - |
 
 
 
@@ -42,9 +44,10 @@
 ```json
 {
   "delete" : ,
-  "Wishlist" : ,
+  "wishlist" : ,
   "전체상품 주문하기" : "",
-  "count" : 
+  "count" : ,
+  "option" :
 }
 ```
 
