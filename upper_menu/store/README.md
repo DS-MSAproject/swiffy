@@ -5,6 +5,7 @@
 | `Authorization` | `JWT(AccessToken/RefreshToken), Cookie` | ✅ | API 접근을 위한 인증 토큰 |
 | `Accept` | `application/json` | ✅ | 응답받을 데이터 형식 지정 |
 
+---
 
 <img src="upper_menu.png" style="width: 500px; height: auto;" alt="설명">
 <img src="store_sub_menu.png" style="width: 500px; height: auto;" alt="설명">
@@ -60,7 +61,7 @@
   * **Content:** `{ "message": "Invalid token" }`
 
 #### 참고사항
-
+---
 
 <img src="store_snack_page1.png" style="width: 500px; height: auto;" alt="설명">
 
@@ -80,6 +81,8 @@
 <img src="store_bakery_page1.png" style="width: 500px; height: auto;" alt="설명">
 <img src="store_bakery_page2.png" style="width: 500px; height: auto;" alt="설명">
 
+---
+
 ### `GET` /api/v1/category/{categoryName}/{subcategoryName}
 
 
@@ -93,6 +96,8 @@
 | categoryName | String | - | - |
 | subCategoryName | String | - | - |
 
+<!-- end list -->
+
 #### **Request Body**
 ```json
 ```
@@ -102,8 +107,6 @@
 
   * **Code:** 200 OK
   * **Content:**
-
-<!-- end list -->
 
 ```json
 {
@@ -116,7 +119,7 @@
     "subCategoryName": "",
     "title": "",
     "price" : "",
-    "pageInfo" : ,
+    "pageInfo" : "",
     "productUrl" : ""
   }
 }
@@ -129,7 +132,7 @@
   * **Code:** 401 UNAUTHORIZED
   * **Content:** `{ "message": "Invalid token" }`
 
-#### 참고사
+#### 참고사항
 
 * 백엔드
 1. 큰 카테고리는 4개
