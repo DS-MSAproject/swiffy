@@ -27,7 +27,23 @@
  
 }
 ```
+#### **Success Response**
 
+  * **Code:** 200 OK
+  * **Content:**
+
+<!-- end list -->
+
+```json
+{
+  "status": "success",
+  "data": {
+    "imageUrl" : ""
+    "productUrl" : ""
+    "displayOrder" : ""
+  }
+}
+```
 
 상세내역
 ```
