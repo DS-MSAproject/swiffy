@@ -181,7 +181,7 @@
 | 주소 | Integer | - | - |
 | phone | Integer | - | |
 | email | String | - | - |
-| messge | Integer | - | - |
+| message | Integer | - | - |
 | productImageUrl | String | - | - |
 | productName | String | - | - |
 | option | Integer | - | 상품갯수 |
@@ -221,7 +221,7 @@
     "주소" : ,
     "phone" : "",
     "email" : "",
-    "messge" : ,
+    "message" : ,
     "productImageUrl" : ,
     "productName" : ,
     "option" : ,
