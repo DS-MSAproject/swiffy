@@ -170,7 +170,15 @@ Res
 }
 
 Res
-별점
-선호도 선택정보
-content
-media
+{
+  "별점 (디폴트로 5점)" :
+  "선호도 선택정보" :
+  "content" :
+  "media(없을 시 텍스트로 분류)" :
+}
+
+컨텐츠 미작성시 
+#### **Error Response**
+  * **Code:** 400 Bad Request
+  * **Content:** `{ "message": "content is null" }` -> alt
+```
