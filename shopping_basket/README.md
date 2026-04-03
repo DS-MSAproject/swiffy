@@ -29,7 +29,7 @@
 | discountPrice | integer | - | - |
 | count | integer | - | 상품 갯수 |
 | option | String | - | - |
-| options | String | - | - |
+| options | String | - | 전체옵션 |
 | totalPrice | integer | - | - |
 | 총 배송비 | integer | - | - |
 | totalDiscountPrice | integer | - | - |
@@ -70,8 +70,8 @@
     "price" : ,
     "discountPrice" : ,
     "count" : ,
-    "Option" : "",
-    "Options" : "",
+    "option" : "",
+    "options" : "",
     "totalPrice" : ,
     "총 배송비" : ,
     "totalDiscountPrice" : ,
