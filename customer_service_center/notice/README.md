@@ -9,11 +9,11 @@
 
 <img src="./n1.png" style="width: 500px; height: auto;" alt="notice">
 
-```
-공지 (상단 고정)
-게시판 번호
-제목
-```
+#### **Request Parameters**
+
+| Name | Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| productId | - | - | - |
 상세내역
 ```
 이미지 카드
