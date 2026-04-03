@@ -13,7 +13,9 @@
 
 | Name | Type | Required | Description |
 | :--- | :--- | :---: | :--- |
-| productId | - | - | - |
+| page | - | - | 현재 보고있는 페이지 |
+| size | - | - | 한 페이지에 보여줄 게시글 개수 (10개) |
+| keyword | - | - | 검색어 |
 상세내역
 ```
 이미지 카드
