@@ -5,14 +5,14 @@
 =======
 
 ## 엔드포인트 상세
-삭제
-`DELETE` api/v1/product/{productId}
-관심상품
-`POST` api/v1/wishlist/{productId}
-옵션변경
-`PUT` api/v1/option/{productId}
-주문하기
-`POST` api/v1/product/{productId}
+삭제  
+`DELETE` api/v1/product/{productId}  
+관심상품  
+`POST` api/v1/wishlist/{productId}  
+옵션변경  
+`PUT` api/v1/option/{productId}  
+주문하기  
+`POST` api/v1/product/{productId}  
 
 #### **Request Parameters**
 
