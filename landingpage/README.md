@@ -29,7 +29,7 @@
 
 | Name | Type | Required | Description |
 | :--- | :--- | :---: | :--- |
-| - | - | - | - |
+| ImageUrl | - | - | - |
 
 #### **Request Body**
 ```json
@@ -156,7 +156,12 @@
 #### **Request Body**
 ```json
 {
-  
+  "id" : ,
+  "title" : "",
+  "contnet" : "",
+  제품으로 들어가는 Url : "",
+  "price" : ,
+  "태그" : ""
 }
 ```
 
@@ -227,16 +232,11 @@
 
 <img src="4.png" style="width: 800px; height: auto;" alt="설명">
 
-### 1\. API 개요
-
-> **Base URL:** `https://api.example.com/v1`  
-> **Authentication:** Bearer Token (Header: `Authorization`)
-
 -----
 
 ### 2\. 엔드포인트 상세 
 
-### `GET /users/{id}`
+### `GET /api/v1/main
 
 사용자의 상세 정보를 조회합니다.
 
@@ -283,16 +283,11 @@
 
 <img src="5.png" style="width: 800px; height: auto;" alt="설명">
 
-### 1\. API 개요
-
-> **Base URL:** `https://api.example.com/v1`  
-> **Authentication:** Bearer Token (Header: `Authorization`)
-
 -----
 
 ### 2\. 엔드포인트 상세 
 
-### `GET /users/{id}`
+### `GET /api/v1/main
 
 사용자의 상세 정보를 조회합니다.
 
@@ -336,16 +331,10 @@
 <img src="5.png" style="width: 800px; height: auto;" alt="설명">
 
 -----
-### 1\. API 개요
-
-> **Base URL:** `https://api.example.com/v1`  
-> **Authentication:** Bearer Token (Header: `Authorization`)
-
------
 
 ### 2\. 엔드포인트 상세 
 
-### `GET /users/{id}`
+### `GET /api/v1/main
 
 사용자의 상세 정보를 조회합니다.
 
