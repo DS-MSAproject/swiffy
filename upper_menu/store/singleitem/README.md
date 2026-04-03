@@ -1,127 +1,250 @@
-## 1
+#### **Request Headers** 공통사항(리뷰쓰기 제외)
+| Name | Value / Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| `Authorization` | `JWT(AccessToken/RefreshToken), Cookie` | ✅ | API 접근을 위한 인증 토큰 |
+| `Accept` | `application/json` | ✅ | 응답받을 데이터 형식 지정 |
 
+> **Base URL:** `https://api.example.com/api/v1
+---
 <img src="1.png" style="width: 500px; height: auto;" alt="설명">
 
-## 엔드포인트 api/v1/products/{productname}
-
-```json
-{
-  ImageUrl :
-}
-```
-
-## 2
-
+2
 <img src="2.png" style="width: 500px; height: auto;" alt="설명">
 
-```json
-{
-  ImageUrl :
-  배송방법 :
-  배송비 :
-  타이틀 :
-  가격 :
-}
-
-Res
-{
-  관심눌렀을 때 :
-}
-```
 
 ## 3
 
 <img src="3.png" style="width: 500px; height: auto;" alt="설명">
 
+## 4
+
+### `POST` /carts     // 장바구니 버튼
+<img src="4.png" style="width: 500px; height: auto;" alt="설명">
+
+#### **Request Body**
 ```json
 {
-  추천상품 (정보 3개)
-- 이름
-- 가격
-- 옵션(상품 개수 1개, 2개, 4개, 6개, 10개 가격) / (맛 옵션)
-  ImageUrl :
-  추천상품 productUrl :
+  "productId" : "",  // 어떤 상품? (추천상품도 포함한 템플릿)
+    "selectedOptions" [{
+      "optionId" : "우유맛",
+      "Quantity" : "2",
+    },
+    "selectedOptions" {
+      "optionId" : "바나나맛",
+      "Quantity" : "2",
+    },
+  ],
+  "totalPrice" : "" (프론트에서 계산한 총액, 백엔드 검증용)
 }
+```
+#### **Success Response**
+
+  * **Code:** 200 OK
+  * **Content:**
+
+```json
+{
+  "status": "success",
+  "data": {
+    "cartItemId": "",       // 💡 방금 생성된 장바구니 아이템 고유 ID
+    "productId": 30,          // 상품 ID
+    "productName": "테린 내 맘대로 세트",
+    "quantity": 2,            // 최종 담긴 수량
+    "totalCartCount": 5,      // 💡 현재 장바구니에 담긴 총 아이템 개수 (상단 배지 업데이트용)
+    "message": "장바구니에 상품을 담았습니다.",
+    "redirectUrl": "/cart"    // [장바구니 가기] 버튼 클릭 시 이동할 경로
+  }
+}
+```
+  
+#### **Error Response**
+
+  * **Code:** 404 NOT FOUND
+  * **Content:** `{ "message": "User not found" }`
+  * **Code:** 401 UNAUTHORIZED
+  * **Content:** `{ "message": "Invalid token" }`
+### 참고사항
+---
+
+## 5
+<img src="5.png" style="width: 500px; height: auto;" alt="설명">
+
+### `GET` /reviews      // 상품 후기 탭 클릭시 
+
+
+---
+
+
+#### **Request Parameters**
+
+| Name | Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| productId | Long | - | - |
+| page | Integer | - | - |
+| size | Integer | - | - |
+<!-- end list -->
+
+#### **Request Body**
+```json
+{
+ 
+}
+```
+
+#### **Success Response**
+
+  * **Code:** 200 OK
+  * **Content:**
+
+
+```json
+{
+  "status": "success",
+    "reviewHeader": {
+      "starAverage" : "",
+      "totalReviewNumber" : "",
+      "ratioStar5" : "", // 5점 비율
+      중략
+      "ratioStar1" : "", // 1점 비율
+      "preferenceRatio" : "", // 선호도 비율
+      "repurchaseRatio" : ""  // 재구매 비율
+    },
+    "reviewBody" : {
+      "reviewId" : "",
+      "reviewMediaUrl" : "",
+      "likeCount" : "",
+      "content" : "",
+      "star" : "",
+      "reviewDetailUrl : ""
+    }
+    "pageInfo" {
+      "pageable": {
+        "sort": {
+          "sorted": true,    // 정렬 여부
+          "unsorted": false,
+          "empty": false
+        },
+        "offset": 0,         // 시작 지점 (인덱스)
+        "pageNumber": 0,     // 💡 현재 페이지 번호 (0부터 시작)
+        "pageSize": 10,       // 💡 한 페이지당 데이터 개수
+        "paged": true,
+        "unpaged": false
+      },
+      "totalPages": 33,      // 💡 전체 페이지 수 (전체 161개 / 5개씩 = 33페이지)
+      "totalElements": 161,  // 💡 전체 데이터 총 개수
+      "last": false,         // 💡 마지막 페이지 여부
+      "size": 5,
+      "number": 0,
+      "sort": { ... },
+      "numberOfElements": 5, // 현재 페이지에 담긴 데이터 개수
+      "first": true,         // 💡 첫 번째 페이지 여부
+      "empty": false         // 결과가 비어있는지 여부
+    }
+  }
+}
+```
 
 #### **Error Response**
 
-  * **Code:** 400 Bad Request
-  * **Content:** `{ "message": "Option(amountOption)is null" }` -> alt
+  * **Code:** 404 NOT FOUND
+  * **Content:** `{ "message": "User not found" }`
+  * **Code:** 401 UNAUTHORIZED
+  * **Content:** `{ "message": "Invalid token" }`
 
-Res
+#### 참고사항
+---
+### `GET` /reviews           // 리뷰 더보기 눌렀을때
+
+#### **Request Parameters**
+
+| Name | Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| reviewId | Long | - | - |
+<!-- end list -->
+
+#### **Request Body**
+```json
 {
-  옵션 :
-  가격 옵션 :
-  productId
+   "isInterested" : ""  // 유용해요
 }
 ```
 
-## 4
+#### **Success Response**
 
-<img src="4.png" style="width: 500px; height: auto;" alt="설명">
+  * **Code:** 200 OK
+  * **Content:**
 
-Res
-```json
-{ 
-  제목 :
-  가격 :
-- 상품개수
-- 옵션
-- 상품Id
-}
-```
-
-
-## 5
-
-<img src="5.png" style="width: 500px; height: auto;" alt="설명">
 
 ```json
-리뷰과 포토리뷰를 없애는 대신에 사용후기에 동영상을 추가
-사용후기 필터링 (사진,동영상,텍스트)
-사진(최대5개),동영상/닉네임/만족(기호도,재구매의사)/내용/별점평균/총리뷰개수/구매자닉네임
-사용후기는 페이지네이션 더보기 (5개씩)
-필터링에 별점에 따라 필터 ex)5점이면 5점 후기만 보여주기 / 디폴트값으로는 최신순 
-더보기를 누르면서 리뷰Url
-
-리뷰 헤더
-    "별점평균" : ,
-    "총리뷰개수" : ,
-    "별의 비율" : ,
-    "만족도 비율" : ,  // 만족도 비율은 별의 비율 아래에다가 배치
-
-리뷰 전체뷰
 {
   "status": "success",
   "data": {
-    "id": 1,
-    "mediaUrl": "",
-    "유용해요": "",
-    "내용" : ,
-    "사용자이름" : "",
-    "별점" : ,
-    "리뷰로 들어가는 Url" : "",
-    "페이지 정보" : 
+    "reviewId" : "",
+    "reviewMediaUrl" : "",
+    "likeCount" : "",
+    "writerName" : "",
+    "star" : "",
+    "createAt" : "",
+    "reportUrl" : ""
   }
 }
+```
 
-리뷰 상세뷰
+#### **Error Response**
+
+  * **Code:** 404 NOT FOUND
+  * **Content:** `{ "message": "User not found" }`
+  * **Code:** 401 UNAUTHORIZED
+  * **Content:** `{ "message": "Invalid token" }`
+
+#### 참고사항
+
+---
+
+### 리뷰쓰기 `POST` /reviews
+
+#### **Request Headers**
+
+| Name | Value / Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| `Authorization` | `JWT(AccessToken/RefreshToken), Cookie` | ✅ | API 접근을 위한 인증 토큰 |
+| `Content-Type` | `multipart/form-data` | ✅ | 이미지/동영상 파일과 데이터를 함께 보내기 위함 |
+| `Accept` | `application/json` | ✅ | 응답받을 데이터 형식 지정 |
+
+#### **Request Body**
+```json
+{ // data(application/json)
+  "productId" : "",
+  "star" : "",
+  "preference" : "",
+  "repurchaseScore" : "",
+  "content" : "",
+}
+// 'files' multipart/form-data
+  - reviewsImage.jpg .....
+```
+####
+#### **Success Response**
+
+  * **Code:** 200 OK
+  * **Content:**
+
+
+```json
 {
   "status": "success",
   "data": {
-    "id": 1,
-    "mediaUrl": "",
-    "유용해요": "",
-    "내용" : "",
-    "사용자이름" : ""
-    "별점" : ,
-    "타이틀" : "",
-    "작성날짜" : 
+    "reviewId": 1025,
+    "message": "리뷰가 성공적으로 등록되었습니다.",
+    "redirectUrl": "/profile/reviews" // 등록 후 이동할 페이지 경로 예시..
   }
 }
-Res
-도움이 되요 눌렀을 때
-```
+```  
+#### **Error Response**
+
+ 400 Bad Request: { "message": "content is null" } (내용 누락/오류)
+ 413 Payload Too Large: { "message": "File size exceeds limit (Max 50MB)" } (동영상 용량 초과)
+ 409 Conflict: { "message": "You have already reviewed this product" } (중복 리뷰 방지)
 
 ## 6
 
@@ -132,10 +255,6 @@ Res
 
 <img src="7.png" style="width: 500px; height: auto;" alt="설명">
 
-```
-상세정보
-- 이미지카드Url
-```
 
 ## 8
 
@@ -148,39 +267,75 @@ Res
 ## 10
 
 <img src="10.png" style="width: 500px; height: auto;" alt="설명">
+---
 
-## 결제 안내, 배송 안내, 교환/반품 안내, 서비스문의 안내는 텍스트로 backend가 뿌리는 것으로 결정
+### `GET` /products   # 1, 2, 3, 6, 7, 8, 9, 10
+---
 
-* 이런 제품은 어때요
+#### **Request Parameters**
+
+| Name | Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| productId | - | - | - |
+<!-- end list -->
+
+
+#### **Request Body**
 ```json
 {
-  "이미지" : "",
-  "제목" : "",
-  "가격" : 
-  제품3개 뿌리는 것으로 결정
+ 	"isInterested" : "" // 관심등록
 }
 ```
 
-## 리뷰 쓰기 엔드포인트 : POST - api/v1/review/{userId}/{productName}/create 
+#### **Success Response**
+
+  * **Code:** 200 OK
+  * **Content:**
+
 ```json
 {
-  "리뷰쓰기 눌렀을 때 Url" : "",
-  "제목" : "",
-  "상품이미지" : "",
-  "선호도(리뷰)" : ,
-  "등록하기 누르면 프로필 리뷰내역 Url" : ""
+  "status": "success",
+    "productInfo": {
+      "imageUrl" : "",
+      "productId" : "",
+      "productName" : "",
+      "productTag" : "",
+      "price" : "",
+      "deleveryFee" : "",
+      "deleveryMethord" : "",
+      "totalPrice" : "",   // 총 제품금액
+      "totalNumber" : "", // 총 제품 갯수
+      "productDetailUrl" : "",  // 상세정보
+    }
+    "Button" : {
+      "cartButtonText" : "장바구니",
+      "purchaseButtonText" : "구매하기"
+   }
+    "recommandInfo" : {
+      "productId" : "",
+      "pruductImageUrl : "",
+      "productName" : "",
+      "productTag" : "",
+      "price" : "",
+      "optionName" : "",
+      "optionDetail" : ""
+    }
+    "productTemplete" {  // 상품 맨 아랫단
+      "paymentInfo" : "", // 결제안내
+      "deleveryInfo" : "", // 배송안내
+      "exchangeAndReturnInfo" : "", // 교환/반품 안내
+      "serviceDetailInfo" : "" // 서비스 문의 안내
+    }
 }
+```
 
-Res
-{
-  "별점 (디폴트로 5점)" :
-  "선호도 선택정보" :
-  "content" :
-  "media(없을 시 텍스트로 분류)" :
-}
-
-컨텐츠 미작성시 
 #### **Error Response**
-  * **Code:** 400 Bad Request
-  * **Content:** `{ "message": "content is null" }` -> alt
-```
+
+  * **Code:** 404 NOT FOUND
+  * **Content:** `{ "message": "User not found" }`
+  * **Code:** 401 UNAUTHORIZED
+  * **Content:** `{ "message": "Invalid token" }`
+
+#### 참고사항
+1. 관련상품은 3개까지.
+
