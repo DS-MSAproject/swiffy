@@ -5,7 +5,7 @@
 <img src="1.png" style="width: 500px; height: auto;" alt="설명">
 <img src="2.png" style="width: 500px; height: auto;" alt="설명">
 
-```
+
 ### 엔드포인트 상세
 ```GET /profile```
 #### **Request Headers**
