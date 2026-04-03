@@ -35,6 +35,10 @@
 
 <img src="p1 (9).png" style="width: 500px; height: auto;" alt="결제상세9">
 
+<!-- <img src="payment_details/p1 (10).png" style="width: 500px; height: auto;" alt="결제상세10"> -->
+
+<img src="p1 (10).png" style="width: 500px; height: auto;" alt="결제상세10">
+
 =======
 ## 엔드포인트 상세
 
@@ -139,10 +143,6 @@
 * 가격 할인 총가격 ( 상품 할인, 적립 가능유무, 배송비 할인, 주문서 할인??)
 
 -----
-
-<!-- <img src="payment_details/p1 (10).png" style="width: 500px; height: auto;" alt="결제상세10"> -->
-
-<img src="p1 (10).png" style="width: 500px; height: auto;" alt="결제상세10">
 
 <!-- <img src="payment_details/p1 (11).png" style="width: 500px; height: auto;" alt="결제상세11"> -->
 
