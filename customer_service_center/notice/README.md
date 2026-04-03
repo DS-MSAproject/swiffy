@@ -150,12 +150,15 @@
 | Name | Value/Type | Required | Description |
 | :--- | :--- | :---: | :--- |
 | Accept | application/json | ✅ | 응답 받을 데이터 형식 |
+| Authorization | Bearer {accessToken} | ✅ | 인증 토큰 (로그인 필수) |
+| X-XSRF-TOKEN | String | ✅ | CSRF 토큰 (XSRF-TOKEN 쿠키값) |
 
 #### **Request Parameters**
 
 | Name | Type | Required | Description |
 | :--- | :--- | :---: | :--- |
-| id | Integer | - | 이벤트 게시글 고유 ID (Path Variable) |
+| id | Integer | ✅ | 이벤트 게시글 고유 ID (Path Variable) |
+| couponId | Integer | ✅ | 쿠폰 고유 ID (Path Variable)) |
 
 #### **Request Body**
 ```json
