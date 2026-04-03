@@ -30,7 +30,6 @@
 * **Code:** `200 OK`
 * **Response Headers:**
     * `Content-Type: application/json; charset=utf-8`
-    * 
 * **Content:**
   
 ```json
