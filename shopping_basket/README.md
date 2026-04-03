@@ -1,6 +1,68 @@
 <img src="1.png" style="width: 500px; height: auto;" alt="설명">
 <img src="2.png" style="width: 500px; height: auto;" alt="설명">
 <img src="3.png" style="width: 500px; height: auto;" alt="설명">
+
+=======
+
+## 엔드포인트 상세
+삭제
+`DELETE` api/v1/product/{productId}
+관심상품
+`POST` api/v1/wishlist/{productId}
+옵션변경
+`PUT` api/v1/option/{productId}
+주문하기
+`POST` api/v1/product/{productId}
+
+#### **Request Parameters**
+
+| Name | Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+|  | - | - | - |
+
+#### **Request Body**
+```json
+{
+  "option" :
+  "옵션변경" :
+  "삭제" :
+  "wishlist" :
+  "주문하기" :
+}
+```
+
+
+#### **Success Response**
+
+  * **Code:** 200 OK
+  * **Content:**
+
+<!-- end list -->
+
+```json
+{
+  "status": "success",
+  "data": {
+    "imageUrl" : ""
+    "productUrl" : ""
+    "productName" : ""
+    "price" :
+    "discountPrice" :
+  }
+}
+```
+
+#### **Error Response**
+
+  * **Code:** 404 NOT FOUND
+  * **Content:** `{ "message": "User not found" }`
+  * **Code:** 401 UNAUTHORIZED
+  * **Content:** `{ "message": "Invalid token" }`
+
+#### 참고사항
+
+-----
+
 <img src="4.png" style="width: 500px; height: auto;" alt="설명">
 <img src="all_select.png" style="width: 500px; height: auto;" alt="설명">
 <img src="all_select2.png" style="width: 500px; height: auto;" alt="설명">
