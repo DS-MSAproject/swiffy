@@ -6,13 +6,6 @@
 <img src="1.png" style="width: 500px; height: auto;" alt="설명">
 <img src="2.png" style="width: 500px; height: auto;" alt="설명">
 
-### 회의 내용
-```
-적립금
-등급
-쿠폰 개수
-주문내역
-최근주문내역(입금전 / 배송준비중 / 배송중 / 배송완료 / 취소 / 교환 / 반품)
 ```
 ### 엔드포인트 상세
 ```GET /profile```
@@ -70,12 +63,15 @@
   }
 }
 ```
-Res
+### 회의 내용
 ```
-상태 
-기간 (오늘 / 1개월 / 3개월 / 6개월 )
+적립금
+등급
+쿠폰 개수
+주문내역
+최근주문내역(입금전 / 배송준비중 / 배송중 / 배송완료 / 취소 / 교환 / 반품)
 
-```
+
 <img src="3.png" style="width: 500px; height: auto;" alt="설명">
 
 ### 엔드포인트 상세
@@ -311,7 +307,7 @@ Res
 <img src="4.png" style="width: 500px; height: auto;" alt="설명">
 
 ### 엔드포인트 상세
-```PUT /users/{id}/profile```
+```PUT /profile```
 
 #### **Request Parameters**
 
