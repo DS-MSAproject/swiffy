@@ -24,6 +24,7 @@
 | size | Integer | - | 한 페이지에 보여줄 게시글 개수 (10개) |
 | keyword | String | - | 검색어 |
 
+### 'POST' /api/v1/coupons/download
 #### **Request Body**
 ```json
 {
