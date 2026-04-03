@@ -1,3 +1,11 @@
+#### **Request Headers** 공통사항
+
+| Name | Value / Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| `Authorization` | `JWT(AccessToken/RefreshToken), Cookie` | ✅ | API 접근을 위한 인증 토큰 |
+| `Accept` | `application/json` | ✅ | 응답받을 데이터 형식 지정 |
+
+
 <img src="upper_menu.png" style="width: 500px; height: auto;" alt="설명">
 <img src="store_sub_menu.png" style="width: 500px; height: auto;" alt="설명">
 <img src="store_sub_menu2.png" style="width: 500px; height: auto;" alt="설명">
@@ -5,24 +13,53 @@
 <img src="store_all_page2.png" style="width: 500px; height: auto;" alt="설명">
 
 
-## 엔드 포인트 : api/v1/category/all
+### `GET` api/v1/category/all
 
-메인
+
+=======
+
+
+#### **Request Parameters**
+
+| Name | Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| categoryName | String | - | - |
+
+#### **Request Body**
+```json
+```
+
+
+#### **Success Response**
+
+  * **Code:** 200 OK
+  * **Content:**
+
+<!-- end list -->
 
 ```json
 {
   "status": "success",
   "data": {
-    "id": 1,
-    "제품 총 개수": "",
+    "id": "",
+    "totalProductNumber": "",
     "ImageUrl": "",
-    "title": "",
-    "price" : ,
-    "제품 들어갔을 때 Url"
-    "페이지정보"
+    "productTitle": "",
+    "price" : "",
+    "productUrl" : "",
+    "pageInfo" : ""
   }
 }
 ```
+
+#### **Error Response**
+
+  * **Code:** 404 NOT FOUND
+  * **Content:** `{ "message": "User not found" }`
+  * **Code:** 401 UNAUTHORIZED
+  * **Content:** `{ "message": "Invalid token" }`
+
+#### 참고사항
 
 
 <img src="store_snack_page1.png" style="width: 500px; height: auto;" alt="설명">
@@ -43,25 +80,56 @@
 <img src="store_bakery_page1.png" style="width: 500px; height: auto;" alt="설명">
 <img src="store_bakery_page2.png" style="width: 500px; height: auto;" alt="설명">
 
+### `GET` api/v1/category/{categoryName}/{subcategoryName}
 
-## 엔드 포인트 : api/v1/category/{categoryName}/{subcategoryName}
 
-시리즈 카테고리
+=======
+
+
+#### **Request Parameters**
+
+| Name | Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| categoryName | String | - | - |
+| subCategoryName | String | - | - |
+
+#### **Request Body**
+```json
+```
+
+
+#### **Success Response**
+
+  * **Code:** 200 OK
+  * **Content:**
+
+<!-- end list -->
+
 ```json
 {
   "status": "success",
   "data": {
-    "id": 1,
-    "시리즈카테고리": "",
+    "productId": ,
+    "categoryId" : "",
+    "categoryName": "",
+    "subCategoryId" : "",
+    "subCategoryName": "",
     "title": "",
-    "price" : ,
-    "페이지 정보" : ,
-    "제품 들어갔을 때 Url" : ""
+    "price" : "",
+    "pageInfo" : ,
+    "productUrl" : ""
   }
 }
 ```
 
-## 참고 사항
+#### **Error Response**
+
+  * **Code:** 404 NOT FOUND
+  * **Content:** `{ "message": "User not found" }`
+  * **Code:** 401 UNAUTHORIZED
+  * **Content:** `{ "message": "Invalid token" }`
+
+#### 참고사
 
 * 백엔드
 1. 큰 카테고리는 4개
@@ -75,7 +143,3 @@
 9. 함께 구매하면 좋은 제품의 기준을 "사용자들이 이 제품을 살 때 이 제품을 많이 사더라" 라는 것으로 정리 디폴트값은 추후 정리
 10. 데일리특가가 정기배송으로 변경
 11. 샐러드 두유를 삭제 or 이름변경
-
-
-
-
