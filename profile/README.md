@@ -1,13 +1,12 @@
+### 1. API 개요
+> **Base URL:** https://api.example.com/api/v1/main
+
+> **Authentication:** Bearer Token (Header: Authorization: Bearer {YOUR_TOKEN})
+
 <img src="1.png" style="width: 500px; height: auto;" alt="설명">
-
-## 회의 내용
-
-| 데이터 | 값  |
-| ------ | --- |
-| 이름   | ... |
-
 <img src="2.png" style="width: 500px; height: auto;" alt="설명">
 
+### 회의 내용
 ```
 적립금
 등급
@@ -15,13 +14,64 @@
 주문내역
 최근주문내역(입금전 / 배송준비중 / 배송중 / 배송완료 / 취소 / 교환 / 반품)
 ```
+### 엔드포인트 상세
+```GET /users/{id}/profile```
+#### **Request Headers**
+| Name | Value / Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| `Authorization` | `Bearer {token}` | ✅ | API 접근을 위한 인증 토큰 |
+| `Accept` | `application/json` | ✅ | 응답받을 데이터 형식 지정 |
+
+#### **Request Parameters**
+* **Code:** `200 OK`
+* **Response Headers:**
+    * `Content-Type: application/json; charset=utf-8`
+* **Content:**
+  
+```json
+{
+  "status": "success",
+  "data": {
+    "user_summary": {
+      "id": 1,
+      "name": "김선국",
+      "greeting_message": "김선국님 안녕하세요!",
+      "membership_level": "일반회원"
+    },
+    "benefits": {
+      "points": 2000,
+      "coupon_count": 0,
+      "order_total_count": 0,
+      "deposit_balance": 0
+    },
+    "order_status_summary": {
+      "recent_period": "최근 3개월",
+      "main_statuses": {
+        "pending_payment": 0,
+        "preparing": 0,
+        "shipping": 0,
+        "delivered": 0
+      },
+      "sub_statuses": {
+        "cancelled": 0,
+        "exchanged": 0,
+        "returned": 0
+      }
+    },
+    "activity_counts": {
+      "wishlist_count": 0,
+      "post_count": 0,
+      "regular_delivery_count": 0
+    }
+  }
+}
+```
 Res
 ```
 상태 
 기간 (오늘 / 1개월 / 3개월 / 6개월 )
 
 ```
-  
 <img src="3.png" style="width: 500px; height: auto;" alt="설명">
 
 ```
@@ -188,3 +238,11 @@ Res
 ## 게시글 관리 뷰의 댓글 선택시 렌더링 화면
 
 <img src="comments.png" style="width: 500px; height: auto;" alt="설명">
+
+
+#### 참고사항1
+**`예치금(Deposit) vs 적립금(Points): 스크린샷에 두 항목이 모두 존재하므로, benefits 객체 내에서 명확히 분리하여 관리합니다.`**
+
+**`확장성: 향후 관심상품이나 게시물 개수가 업데이트될 때, activity_counts 객체만 갱신하여 응답하면 프론트엔드 UI에 즉시 반영됩니다.`**
+
+**`보안: id를 통한 조회 시 토큰의 소유주와 일치하는지 서버 측 검증이 반드시 필요합니다. (403 Forbidden 처리)`**
