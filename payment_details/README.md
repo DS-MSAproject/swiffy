@@ -57,7 +57,6 @@
 | discountPrice | Integer | - | - |
 | count | Integer | - | 상품 갯수 |
 | option | String | - | - |
-| options | String | - | 전체옵션 |
 | totalPrice | Integer | - | - |
 | 총 배송비 | Integer | - | - |
 | totalDiscountPrice | Integer | - | - |
@@ -70,7 +69,7 @@
 | 적립혜택 | Integer | - | 1% 소수점 버림 |
 | message | String | - | 선택사항 |
 | 받는사람 | String | - | - |
-| 주소 | Long | - | - |
+| 주소 | String | - | - |
 | phone | String | - | - |
 | email | String | - | - |
 | 배송지 | String | - | - |
