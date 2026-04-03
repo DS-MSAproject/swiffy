@@ -10,6 +10,9 @@
 ### `GET` /api/v1/board/notice
 
 <img src="./n1.png" style="width: 500px; height: auto;" alt="notice">
+<img src="./n2.png" style="width: 500px; height: auto;" alt="notice">
+<img src="./n3.png" style="width: 500px; height: auto;" alt="notice">
+<img src="./n4.png" style="width: 500px; height: auto;" alt="notice">
 
 ---
 
@@ -44,22 +47,6 @@
   }
 }
 ```
-
-상세내역
-```
-이미지 카드
-상품 Url ( 제품 조회 버튼 )
-쿠폰 받기 버튼
-```
-
-Res
-```
-게시물 검색 ( 기간 / 필터 (제목 내용) / 검색어 )
-```
-
-<img src="./n2.png" style="width: 500px; height: auto;" alt="notice">
-<img src="./n3.png" style="width: 500px; height: auto;" alt="notice">
-<img src="./n4.png" style="width: 500px; height: auto;" alt="notice">
 <img src="./n4%20(2).png" style="width: 500px; height: auto;" alt="notice">
 <img src="./n5.png" style="width: 500px; height: auto;" alt="notice">
 <img src="./n6.png" style="width: 500px; height: auto;" alt="notice">
