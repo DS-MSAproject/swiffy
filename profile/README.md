@@ -1,5 +1,5 @@
 ### 1. API 개요
-> **Base URL:** https://api.example.com/api/v1/main
+> **Base URL:** https://api.example.com/api/v1
 
 > **Authentication:** Bearer Token (Header: Authorization: Bearer {YOUR_TOKEN})
 
@@ -15,7 +15,7 @@
 최근주문내역(입금전 / 배송준비중 / 배송중 / 배송완료 / 취소 / 교환 / 반품)
 ```
 ### 엔드포인트 상세
-```GET /users/{id}/profile```
+```GET /profile```
 #### **Request Headers**
 | Name | Value / Type | Required | Description |
 | :--- | :--- | :---: | :--- |
@@ -23,6 +23,10 @@
 | `Accept` | `application/json` | ✅ | 응답받을 데이터 형식 지정 |
 
 #### **Request Parameters**
+
+#### **Request Body**
+
+#### **Success Response**
 * **Code:** `200 OK`
 * **Response Headers:**
     * `Content-Type: application/json; charset=utf-8`
