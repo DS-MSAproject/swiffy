@@ -41,9 +41,12 @@
 {
   "status": "success",
   "data": {
-    "imageUrl" : ""
-    "productUrl" : ""
-    "displayOrder" : ""
+    "id" : ""      //
+    "boardtag" : ""
+    "title" : ""
+    "createdAt" : "" // 생성일
+    "contentImageUrl" // + 버튼 클릭시 노출될 이미지
+    "couponUrl // 쿠폰url
   }
 }
 ```
