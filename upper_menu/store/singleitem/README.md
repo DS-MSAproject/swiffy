@@ -18,7 +18,8 @@
 
 ## 4
 
-### `POST` /carts     // 장바구니 버튼
+### `POST` /carts     
+장바구니 버튼
 <img src="4.png" style="width: 500px; height: auto;" alt="설명">
 
 #### **Request Body**
@@ -69,8 +70,8 @@
 ## 5
 <img src="5.png" style="width: 500px; height: auto;" alt="설명">
 
-### `GET` /reviews      // 상품 후기 탭 클릭시 
-
+### `GET` /reviews      
+상품 후기 탭 클릭시 
 
 ---
 
@@ -153,7 +154,8 @@
 
 #### 참고사항
 ---
-### `GET` /reviews           // 리뷰 더보기 눌렀을때
+### `GET` /reviews           
+리뷰 더보기 눌렀을때
 
 #### **Request Parameters**
 
