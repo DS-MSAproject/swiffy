@@ -164,7 +164,8 @@
 =======
 ## 엔드포인트 상세
 
-`POST` /api/v1/payment  // 주문완료라 잘모르겠습니다.
+`POST` /api/v1/payment  
+// 주문완료라 잘모르겠습니다.
 
 
 #### **Request Parameters**
