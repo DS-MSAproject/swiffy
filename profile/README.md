@@ -94,6 +94,8 @@ Res
 | `status` | `String` | ❌ | 배송 상태 필터 (SHIPPING, DELIVERED 등) |
 | `page` | `Integer` | ❌ | 페이지 번호 (기본값: 1) |
 
+#### **Request Body**
+
 #### **Success Response**
 * **Code:** `200 OK`
 * **Content:**
@@ -157,6 +159,8 @@ Res
 | Name | Type | Required | Description |
 | :--- | :--- | :---: | :--- |
 | `order_nember` | `String` | ✅ | 조회를 원하는 주문 번호 (Path Variable) |
+
+#### **Request Body**
 
 #### **Success Response**
 * **Code:** `200 OK`
@@ -225,6 +229,7 @@ Res
 
 <img src="3_1.png" style="width: 500px; height: auto;" alt="설명">
 
+
 ### 엔드포인트 상세
 ```GET /orders/{order_number}/cs-history```
 #### **Request Headers**
@@ -232,6 +237,10 @@ Res
 | :--- | :--- | :---: | :--- |
 | `Authorization` | `Bearer {token}` | ✅ | API 접근을 위한 인증 토큰 |
 | `Accept` | `application/json` | ✅ | 응답받을 데이터 형식 지정 |
+
+#### **Request Parameters**
+
+#### **Request Body**
 
 #### **Success Response**
 * **Code:** `200 OK`
@@ -303,6 +312,8 @@ Res
 
 ### 엔드포인트 상세
 ```PUT /users/{id}/profile```
+
+#### **Request Parameters**
 
 #### **Request Headers**
 | Name | Value / Type | Required | Description |
