@@ -181,13 +181,15 @@
 | phone | Integer | - | |
 | email | String | - | - |
 | messge | Integer | - | - |
-| 주문상품 | Integer | - | - |
 | productImageUrl | String | - | - |
 | productName | String | - | - |
 | option | Integer | - | 상품갯수 |
 | price | Integer | - | - |
 | 결제정보 | Integer | - | - |
-| 주문상품 | String | - |  |
+| productImageUrl | String | - |  |
+| productName | String | - |  |
+| option | String | - |  |
+| price | Integer | - |  |
 | 배송비 | Integer | - |  |
 | 결제금액 | String | - | - |
 | 회원 적립금 | Integer | - | - |
@@ -224,7 +226,6 @@
     "productName" : ,
     "option" : ,
     "price" : ,
-    "주문상품" : ,
     "배송비" : ,
     "결제금액" : ,
     "적립금" : ,
