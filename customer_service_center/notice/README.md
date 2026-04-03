@@ -40,24 +40,24 @@
   "data": {
     "notices": [
       {
-        "id": 53,
-        "title": "[EVENT] 쿠폰 이벤트",
+        "id": ,
+        "title": "",
         "isPinned": false,
-        "createdAt": "2026-03-15T10:00:00"
+        "createdAt": ""
       },
       {
-        "id": 52,
-        "title": "🌿 섬 냉냉복권 사용 방법 안내",
+        "id": ,
+        "title": "",
         "isPinned": false,
-        "createdAt": "2026-03-10T10:00:00"
+        "createdAt": ""
       }
     ],
     "pinnedNotices": [
       {
-        "id": 100,
-        "title": "자체 품질 테스트 관련 안내",
-        "isPinned": true,
-        "createdAt": "2026-01-01T00:00:00"
+        "id": ,
+        "title": "",
+        "isPinned": true,       
+        "createdAt": ""
       }
     ],
     "pageInfo": {
