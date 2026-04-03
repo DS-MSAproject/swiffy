@@ -18,7 +18,7 @@
 
 | Name | Type | Required | Description |
 | :--- | :--- | :---: | :--- |
-|  | - | - | - |
+| productId | Long | - | - |
 
 #### **Request Body**
 ```json
