@@ -231,8 +231,11 @@ productInfo :
 
 | Name | Type | Required | Description |
 | :--- | :--- | :---: | :--- |
-| `id` | `Integer` | ✅ | 사용자의 고유 ID (Path Variable) |
-| `include_posts` | `Boolean` | ❌ | 작성한 포스트 포함 여부 (Query Param) |
+| id | Long | ✅ | 사용자의 고유 ID (Path Variable) |
+| title | String | ❌ |  |
+| mainImageUrl | String | ❌ |  |
+| content | String | ❌ |  |
+| contentImageUrl | String | ❌ | ) |
 
 #### **Success Response**
 
@@ -241,6 +244,15 @@ productInfo :
 
 <!-- end list -->
 
+```json
+{
+  "status": "success",
+  "data": {
+    "imageUrl" : ,
+  }
+}
+```
+RequestBody
 ```json
 {
   "status": "success",
