@@ -5,21 +5,7 @@
 | `Authorization` | `JWT(AccessToken/RefreshToken), Cookie` | ✅ | API 접근을 위한 인증 토큰 |
 | `Accept` | `application/json` | ✅ | 응답받을 데이터 형식 지정 |
 
-
-
-
-## 엔드포인트 :  api/v1/store/bestseller
-
-```json
-베스트셀러 눌러서 들어갔을 때 나오는 상품이 6개
-
-{
-  상품이미지 : 
-  타이틀 :
-  가격 :
-  상품으로 들어가는 Url : 
-}
-```
+---
 
 ### `GET` /api/v1/store/bestseller
 
