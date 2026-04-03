@@ -29,7 +29,7 @@
 #### **Request Body**
 ```json
 {
- 
+  "couponId": 2001
 }
 ```
 #### **Success Response**
