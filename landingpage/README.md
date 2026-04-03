@@ -14,11 +14,7 @@
 # 필요시 협의 내용들
 # 
 
-<img src="2.png" style="width: 800px; height: auto;" alt="설명">
-<img src="3.png" style="width: 800px; height: auto;" alt="설명">
-<img src="4.png" style="width: 800px; height: auto;" alt="설명">
-<img src="5.png" style="width: 800px; height: auto;" alt="설명">
-<img src="6.png" style="width: 800px; height: auto;" alt="설명">
+
 =======
 
 ## 지금은 사용자에게 렌더링하는 페이지
@@ -252,6 +248,7 @@ productInfo :
   }
 }
 ```
+
 RequestBody
 ```json
 {
@@ -300,6 +297,14 @@ RequestBody
 
 <!-- end list -->
 
+Response
+```json
+{
+  "imageUrl" : "" 
+}
+```
+
+RequestBody
 ```json
 {
   "status": "success",
@@ -384,4 +389,5 @@ RequestBody
 
 #### 참고사항
 
+<img src="6.png" style="width: 800px; height: auto;" alt="설명">
 
