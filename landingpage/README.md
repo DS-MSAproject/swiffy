@@ -2,7 +2,7 @@
 
 | Name | Value / Type | Required | Description |
 | :--- | :--- | :---: | :--- |
-| `Authorization` | `JWT(Cookie)` | ✅ | API 접근을 위한 인증 토큰 |
+| `Authorization` | `JWT(AccessToken/RefreshToken), Cookie` | ✅ | API 접근을 위한 인증 토큰 |
 | `Accept` | `application/json` | ✅ | 응답받을 데이터 형식 지정 |
 
 ### 2\. 엔드포인트 상세 (Example)
@@ -23,14 +23,12 @@
 
 | Name | Type | Required | Description |
 | :--- | :--- | :---: | :--- |
-| ImageUrl | - | - | - |
-| productUrl | | | |
+| productId | - | - | - |
 
 #### **Request Body**
 ```json
 {
-  IamgeUrl : "",
-  배너로 들어간 Url : 
+ 
 }
 ```
 
@@ -46,8 +44,9 @@
 {
   "status": "success",
   "data": {
-    "produtpageinfo : ~~
-    (etc..)
+    "imageUrl" : ""
+    "productUrl" : ""
+    "displayOrder" : ""
   }
 }
 ```
@@ -70,12 +69,9 @@
 
 | Name | Type | Required | Description |
 | :--- | :--- | :---: | :--- |
-| id | Long | - | - |
-| title | String | - | - |
-| productUrl | String | - | - |
-| ImageUrl | String  | - | - |
-| price | integer | - | - |
-| tagName | String | - | (판매2위) |
+| productId | Long | - | - |
+
+#### **Response Body**
 
 #### **Success Response**
 
@@ -87,27 +83,34 @@
 ```json
 {
   {
-    "id": "success",
-    "title":
-    "image url":
-    "content":
-    "price":
+    "status": "success",
+      "id":"",
+      "title": "",
+      "productUrl" : "",
+      "imageUrl": "",
+      "tagName": "",
+      "price": ""
+  }
+  {
+    "status": "success",
+      "id":"",
+      "title": "",
+      "productUrl" : "",
+      "imageUrl": "",
+      "tagName": "",
+      "price": ""
+  }
+  {
+    "status": "success",
+      "id":"",
+      "title": "",
+      "productUrl" : "",
+      "imageUrl": "",
+      "tagName": "",
+      "price": ""
   }
 
- {
-    "id": "success",
-    "title":
-    "image url":
-    "content":
-    "price":
-  }
-{
-    "id": "success",
-    "title":
-    "image url":
-    "content":
-    "price":
-  }
+ 
 }
 ```
 
@@ -122,7 +125,6 @@
 #### 참고사항
 베스트셀러는 [전체판매1위] 이런 템플릿으로 하고 
 태그는 [판매1위] 이런식으로 템플릿을 합니다.
-productInfo : 
 
 
 <img src="3.png" style="width: 800px; height: auto;" alt="설명">
@@ -134,26 +136,12 @@ productInfo :
 
 | Name | Type | Required | Description |
 | :--- | :--- | :---: | :--- |
-| id | Long | - | - |
-| title | String | - | - |
-| content | String | - | - |
-| productUrl | String | - | - |
-| ImageUrl | String  | - | - |
-| price | integer | - | - |
-| tagName | String | - | (판매2위) |
-| hashtagName | String | - | - |
+| productId | Long | - | - |
 
+<!-- end list -->
 
 #### **Request Body**
 ```json
-{
-  "id" : ,
-  "title" : "",
-  "contnet" : "",
-  제품으로 들어가는 Url : "",
-  "price" : ,
-  "태그" : ""
-}
 ```
 
 
@@ -162,35 +150,61 @@ productInfo :
   * **Code:** 200 OK
   * **Content:**
 
-<!-- end list -->
-
 ```json
 {
   {
-    "produtpageinfo : ~~
-    (etc..)
-  }
-  }
-
- {
-    "produtpageinfo : ~~
-    (etc..)
-  }
+  "status" : "success",
+    "productId" : ,
+    "title" : "",
+    "imageUrl" : "",
+    "productUrl : "",
+    "price" : ,
+    "tagName" : "",
+    "hashtagName
+  "
+  {
+  "status" : "success",
+    "productId" : ,
+    "title" : "",
+    "imageUrl" : "",
+    "productUrl : "",
+    "price" : ,
+    "tagName" : "",
+    "hashtagName
+  "
   }
 {
-    "produtpageinfo : ~~
-    (etc..)
-  }
+  "status" : "success",
+    "productId" : ,
+    "title" : "",
+    "imageUrl" : "",
+    "productUrl : "",
+    "price" : ,
+    "tagName" : "",
+    "hashtagName
+  "
   }
 {
-    "produtpageinfo : ~~
-    (etc..)
-  }
+  "status" : "success",
+    "productId" : ,
+    "title" : "",
+    "imageUrl" : "",
+    "productUrl : "",
+    "price" : ,
+    "tagName" : "",
+    "hashtagName
+  "
   }
 {
-    "produtpageinfo : ~~
-    (etc..)
-  }
+  "status" : "success",
+    "productId" : ,
+    "title" : "",
+    "imageUrl" : "",
+    "productUrl : "",
+    "price" : ,
+    "tagName" : "",
+    "hashtagName
+  "
   }
 }
 ```
@@ -219,37 +233,27 @@ productInfo :
 
 | Name | Type | Required | Description |
 | :--- | :--- | :---: | :--- |
-| id | Long | ✅ | 사용자의 고유 ID (Path Variable) |
-| title | String | ❌ |  |
-| mainImageUrl | String | ❌ |  |
-| content | String | ❌ |  |
-| contentImageUrl | String | ❌ | ) |
+
+<!-- end list -->
+
+RequestBody
+```json
+```
 
 #### **Success Response**
 
   * **Code:** 200 OK
   * **Content:**
 
-<!-- end list -->
-
-RequestBody
 ```json
 {
+  "status" : "success",
     "Id" : ,
     "title": "",
+    "subtitle": "",
     "mainIamgeUrl": "",
-    "content": "",
-    "contentImageUrl": "
-  }
-}
-```
-
-```json
-{
-  "status": "success",
-  "data": {
-    "imageUrl" : ,
-  }
+    "contentImageUrl": "",
+    "buttonText": ""
 }
 ```
 
@@ -277,64 +281,36 @@ RequestBody
 
 | Name | Type | Required | Description |
 | :--- | :--- | :---: | :--- |
-| id | Long | ✅ | 사용자의 고유 ID (Path Variable) |
-| title | String |  |  |
-| firstreviewImageUrl | String |  |  |
-| star | integer |  |  |
-| content | String |  |  |
-| average | float |  |  |
-| totalReview | integer |  |  |
-| reviewUrl | String |  |  |
-
-
-#### **Success Response**
-
-  * **Code:** 200 OK
-  * **Content:**
+| productId | Long | ✅ |  |
+| reviewId | Long | ✅ |  |
 
 <!-- end list -->
 
 RequestBody
 ```json
-{
-    "Id" : ,
-    "title": "",
-    "firstreviewIamgeUrl": "",
-    "star": "",
-    "content": "",
-    "평균" : "",
-    "리뷰개수" : ,
-    "리뷰보여주는 Url" : ""
-}
 ```
+#### **Success Response**
+
+  * **Code:** 200 OK
+  * **Content:**
 
 ```json
 {
-
-    "Id" : ,
-    "title": "",
-    "firstreviewIamgeUrl": "",
-    "star": "",
-    "content": "",
-    "평균" : "",
-    "리뷰개수" : ,
-    "리뷰보여주는 Url" : ""
-  }
-{
-    "Id" : ,
-    "title": "",
-    "firstreviewIamgeUrl": "",
-    "star": "",
-    "content": "",
-    "평균" : "",
-    "리뷰개수" : ,
-    "구매자이름" : "",
-    "좋아요 개수" : "",
-    "댓글" : "",
-    "작성일자" : "",
-    "기호도" : "",
-    "재구매의사" : [있어요, 없어요],
-  }
+  "status" : "success",
+      "Id" : ,
+      "title": "",
+      "tagName" : "",
+      "reviewIamgeUrl": "",
+      "star": "",
+      "content": "",
+      "starAverage" : "",
+      "totalReviewAmount" : ,
+      "reviewUrl" : "",
+      "userName" : "",
+      "productOption" : "",
+      "reviewCreatAt" : "",
+      "likeCount" : "",
+      "reportUrl" : ""
 }
 ```
 
@@ -349,4 +325,7 @@ RequestBody
 #### 참고사항
 
 <img src="6.png" style="width: 800px; height: auto;" alt="설명">
+
+### 참고사항
+프론트에서 이미지로 대체
 
