@@ -13,7 +13,7 @@
 <img src="./n2.png" style="width: 500px; height: auto;" alt="notice">
 <img src="./n3.png" style="width: 500px; height: auto;" alt="notice">
 <img src="./n4.png" style="width: 500px; height: auto;" alt="notice">
-
+<img src="./n7.png" style="width: 500px; height: auto;" alt="notice">
 ---
 
 #### **Request Parameters**
@@ -53,7 +53,6 @@
 <img src="./n4%20(2).png" style="width: 500px; height: auto;" alt="notice">
 <img src="./n5.png" style="width: 500px; height: auto;" alt="notice">
 <img src="./n6.png" style="width: 500px; height: auto;" alt="notice">
-<img src="./n7.png" style="width: 500px; height: auto;" alt="notice">
 <img src="./n9.png" style="width: 500px; height: auto;" alt="notice">
 <img src="./n-9.png" style="width: 500px; height: auto;" alt="notice">
 <img src="./n10.png" style="width: 500px; height: auto;" alt="notice">
