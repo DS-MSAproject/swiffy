@@ -71,8 +71,6 @@
 
 <img src="2.png" style="width: 800px; height: auto;" alt="설명">
 
-### 1\. API 개요 (선택 사항)
-
 
 사용자의 상세 정보를 조회합니다.
 
