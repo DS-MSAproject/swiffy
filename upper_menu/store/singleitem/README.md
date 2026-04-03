@@ -244,8 +244,8 @@
 ```  
 #### **Error Response**
 
- 400 Bad Request: { "message": "content is null" } (내용 누락/오류)
- 413 Payload Too Large: { "message": "File size exceeds limit (Max 50MB)" } (동영상 용량 초과)
+ 400 Bad Request: { "message": "content is null" } (내용 누락/오류) \n
+ 413 Payload Too Large: { "message": "File size exceeds limit (Max 50MB)" } (동영상 용량 초과) \n
  409 Conflict: { "message": "You have already reviewed this product" } (중복 리뷰 방지)
 
 ## 6
