@@ -69,7 +69,6 @@
 | 적립혜택 | Integer | - | 1% 소수점 버림 |
 | message | String | - | 선택사항 |
 | 받는사람 | String | - | - |
-| 주소 | String | - | - |
 | phone | String | - | - |
 | email | String | - | - |
 | 배송지 | String | - | - |
@@ -86,7 +85,6 @@
 {
   "message" : "",
   "받는사람" : "" ,
-  "주소" : "",
   "phone" : "",
   "email" : "",
   "배송지 저장여부" : "",
