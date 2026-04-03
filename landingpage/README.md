@@ -72,7 +72,6 @@
 | :--- | :--- | :---: | :--- |
 | id | Long | - | - |
 | title | String | - | - |
-| content | String | - | - |
 | productUrl | String | - | - |
 | ImageUrl | String  | - | - |
 | price | integer | - | - |
