@@ -26,6 +26,7 @@
 * **Code:** `200 OK`
 * **Response Headers:**
     * `Content-Type: application/json; charset=utf-8`
+    * 
 * **Content:**
   
 ```json
@@ -74,6 +75,59 @@ Res
 ```
 <img src="3.png" style="width: 500px; height: auto;" alt="설명">
 
+### 엔드포인트 상세
+```GET /orders```
+#### **Request Headers**
+| Name | Value / Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| `Authorization` | `Bearer {token}` | ✅ | API 접근을 위한 인증 토큰 |
+| `Accept` | `application/json` | ✅ | 응답받을 데이터 형식 지정 |
+
+#### **Request Parameters**
+| Name | Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| `start_date` | `String` | ❌ | 조회 시작일 (YYYY-MM-DD, 기본값: 3개월 전) |
+| `end_date` | `String` | ❌ | 조회 종료일 (YYYY-MM-DD, 기본값: 오늘) |
+| `status` | `String` | ❌ | 배송 상태 필터 (SHIPPING, DELIVERED 등) |
+| `page` | `Integer` | ❌ | 페이지 번호 (기본값: 1) |
+
+#### **Success Response**
+* **Code:** `200 OK`
+* **Content:**
+```json
+{
+  "status": "success",
+  "data": {
+    "total_orders": 12,
+    "current_page": 1,
+    "orders": [
+      {
+        "order_number": "20260403-0000123",
+        "order_date": "2026-04-03T14:20:00Z",
+        "order_status": "SHIPPING",
+        "order_status_text": "배송중",
+        "items": [
+          {
+            "product_id": 101,
+            "title": "[리틀버디] 고단백 연어 사료 2kg",
+            "image_url": "https://cdn.petfood.com/products/salmon_01.jpg",
+            "option": "입자크기: 소립",
+            "price": 25000,
+            "quantity": 2
+          }
+        ],
+        "payment_info": {
+          "total_product_amount": 50000,
+          "shipping_fee": 3000,
+          "total_discount_amount": 5000,
+          "final_payment_amount": 48000
+        }
+      }
+    ]
+  }
+}
+```
+### 회의 내용
 ```
 기간별 상품주문내역
 상품 주문 날짜
@@ -88,6 +142,7 @@ Res
 구매후기 (없으면 구매후기 작성 페이지로)
 주문조회 10개씩
 ```
+
 상세보기
 ```
 주문번호
