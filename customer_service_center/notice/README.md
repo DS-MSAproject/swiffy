@@ -15,6 +15,11 @@
 <img src="./n4.png" style="width: 500px; height: auto;" alt="notice">
 
 ---
+#### **Response Headers**
+
+| Name | Value | Required | Description |
+| :--- | :--- | :---: | :--- |
+| Content-Type | application/json | ✅ | 응답 데이터 형식 |
 
 #### **Request Parameters**
 
@@ -29,6 +34,7 @@
 #### **Request Body**
 ```json
 ```
+
 #### **Success Response**
 
   * **Code:** 200 OK
@@ -71,6 +77,68 @@
 <img src="./n4%20(2).png" style="width: 500px; height: auto;" alt="notice">
 <img src="./n5.png" style="width: 500px; height: auto;" alt="notice">
 <img src="./n6.png" style="width: 500px; height: auto;" alt="notice">
+
+---
+
+### `GET` /api/v1/board/notice/{id}
+
+
+#### **Response Headers**
+
+| Name | Value | Required | Description |
+| :--- | :--- | :---: | :--- |
+| Content-Type | application/json | ✅ | 응답 데이터 형식 |
+
+#### **Request Parameters**
+
+| Name | Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| id | Integer | ✅ | 공지사항 고유 ID |
+
+#### **Request Body**
+
+```json
+```
+
+#### **Success Response**
+
+  * **Code:** 200 OK
+  * **Content:**
+
+```json
+{
+  "status": "success",
+  "data": {
+    "notices": [
+      {
+        "id": ,
+        "title": "",
+        "isPinned": false,
+        "createdAt": ""
+      },
+      {
+        "id": ,
+        "title": "",
+        "isPinned": false,
+        "createdAt": ""
+      }
+    ],
+    "pinnedNotices": [
+      {
+        "id": ,
+        "title": "",
+        "isPinned": true,       
+        "createdAt": ""
+      }
+    ],
+    "pageInfo": {
+    "currentPage": 0,
+    "totalPages": 5,
+    }
+  }
+}
+```
+
 <img src="./n7.png" style="width: 500px; height: auto;" alt="notice">
 <img src="./n9.png" style="width: 500px; height: auto;" alt="notice">
 <img src="./n-9.png" style="width: 500px; height: auto;" alt="notice">
