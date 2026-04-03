@@ -20,9 +20,11 @@
 
 | Name | Type | Required | Description |
 | :--- | :--- | :---: | :--- |
-| page | Integer | - | 현재 보고있는 페이지 |
+| page | Integer | - | 현재 페이지 번호 (기본값:0) |
 | size | Integer | - | 한 페이지에 보여줄 게시글 개수 (10개) |
-| keyword | String | - | 검색어 |
+| keyword | String | - | 검색어(Query Param) |
+| searchType | String | - | 검색 기준 - title(제목), content(내용) (Query Param) |
+| period | String | - | 기간 필터 - week(일주일), month(한달), threeMonths(세달), all(전체, 기본값) (Query Param) |
 
 #### **Request Body**
 ```json
