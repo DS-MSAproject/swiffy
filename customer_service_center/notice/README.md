@@ -43,15 +43,14 @@
 {
   "status": "success",
   "data": {
-    "id" : ""      //
-    "boardtag" : ""
-    "title" : ""
-    "createdAt" : "" // 생성일
-    "contentImageUrl" // + 버튼 클릭시 노출될 이미지
-    "couponUrl // 쿠폰url
-  }
-}
-```
+    "notices": [
+      {
+        "id": 53,
+        "boardTag": "EVENT",
+        "title": "[EVENT] 쿠폰 이벤트",
+        "content": "신제품 재입고 기념 쿠폰 이벤트! 하단 버튼을 눌러 다운받으세요.",
+        "imageUrls": ["https://s3.eum-shop.com/notices/coupon_eve우
+
 <img src="./n4%20(2).png" style="width: 500px; height: auto;" alt="notice">
 <img src="./n5.png" style="width: 500px; height: auto;" alt="notice">
 <img src="./n6.png" style="width: 500px; height: auto;" alt="notice">
