@@ -60,13 +60,9 @@
         "createdAt": "2026-01-01T00:00:00"
       }
     ],
-    "pagination": {
-      "currentPage": 1,
-      "totalPages": 5,
-      "totalCount": 53,
-      "size": 10,
-      "hasNext": true,
-      "hasPrev": false
+    "pageInfo": {
+    "currentPage": 0,
+    "totalPages": 5,
     }
   }
 }
