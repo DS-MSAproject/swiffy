@@ -244,7 +244,7 @@
     "title": "",
     "mainIamgeUrl": "",
     "content": "",
-    "contentImageUrl": ""
+    "contentImageUrl": "
   }
 }
 ```
@@ -305,8 +305,6 @@
 
 
 #### 참고사항
-
-<img src="5.png" style="width: 800px; height: auto;" alt="설명">
 
 -----
 
