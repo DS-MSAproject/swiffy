@@ -69,21 +69,6 @@
 
 
 
-
-
-
-
-# 추천 상품 
-## 관리자 추천 상품 페이지 필요
-### 추천 상품 등록 데이터
-|제품명|?|
-|-----|---|
-|?|?|
-### 등록 URL
-`/api/v1/admain(관리자)`
-`/api/v1/admin/banner`
-
-
 <img src="2.png" style="width: 800px; height: auto;" alt="설명">
 
 ### 1\. API 개요 (선택 사항)
