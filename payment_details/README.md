@@ -66,7 +66,7 @@
 | 적립금 | Integer | - | - |
 | 적립금사용 여부 | Integer | - | - |
 | 적용금액 | Integer | - | 총 할인+쿠폰+적립가격 |
-| 결제정보 | Integer | - | 주문상품 가격 / 배송비 / 할인 부가결제 / 최종 결제금액 |
+| 주문상품총가격 | Integer | - | |
 | 적립혜택 | Integer | - | 1% 소수점 버림 |
 | message | String | - | 선택사항 |
 | 받는사람 | String | - | - |
@@ -119,7 +119,8 @@
     "쿠폰 결제 조건" : ,
     "적립금 잔액" : ,
     "적용금액" : ,
-    "결제정보" : ,
+    "주문상품" : ,
+    "배송비" : ,
     "적립혜택" : 
   }
 }
@@ -185,7 +186,6 @@
 | productName | String | - | - |
 | option | Integer | - | 상품갯수 |
 | price | Integer | - | - |
-| 결제정보 | Integer | - | - |
 | productImageUrl | String | - |  |
 | productName | String | - |  |
 | option | String | - |  |
@@ -226,6 +226,7 @@
     "productName" : ,
     "option" : ,
     "price" : ,
+    "주문상품" : ,
     "배송비" : ,
     "결제금액" : ,
     "적립금" : ,
