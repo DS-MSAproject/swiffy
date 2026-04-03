@@ -15,9 +15,13 @@
 
 | Name | Type | Required | Description |
 | :--- | :--- | :---: | :--- |
-| page | - | - | 현재 보고있는 페이지 |
-| size | - | - | 한 페이지에 보여줄 게시글 개수 (10개) |
-| keyword | - | - | 검색어 |
+| page | Integer | - | 현재 보고있는 페이지 |
+| size | Integer | - | 한 페이지에 보여줄 게시글 개수 (10개) |
+| keyword | String | - | 검색어 |
+
+
+
+
 상세내역
 ```
 이미지 카드
