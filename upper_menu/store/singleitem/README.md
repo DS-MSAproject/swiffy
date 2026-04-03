@@ -43,7 +43,12 @@ Req
   추천상품 productUrl :
 }
 
-Req
+#### **Error Response**
+
+  * **Code:** 400 Bad Request
+  * **Content:** `{ "message": "Option(amountOption)is null" }` -> alt
+
+Res
 {
   옵션 :
   가격 옵션 :
@@ -155,11 +160,14 @@ Res
 
 
 ## 리뷰 쓰기 엔드포인트 : api/v1/review/{userId}/{productName}/create 
-```
-리뷰쓰기 눌렀을 때 Url :
-제목
-상품이미지
-선호도(리뷰)
+```json
+{
+  "리뷰쓰기 눌렀을 때 Url" : "",
+  "제목" : "",
+  "상품이미지" : "",
+  "선호도(리뷰)" : ,
+  "등록하기 누르면 프로필 리뷰내역 Url" : ""
+}
 
 Res
 별점
