@@ -11,13 +11,9 @@
 
 <img src="1.png" style="width: 800px; height: auto;" alt="설명">
 
-# 필요시 협의 내용들
-# 
-
 
 =======
 
-## 지금은 사용자에게 렌더링하는 페이지
 
 #### **Request Parameters**
 
@@ -57,6 +53,8 @@
   * **Content:** `{ "message": "User not found" }`
   * **Code:** 401 UNAUTHORIZED
   * **Content:** `{ "message": "Invalid token" }`
+
+#### 참고사항
 
 -----
 
