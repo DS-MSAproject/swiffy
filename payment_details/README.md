@@ -42,7 +42,7 @@
 =======
 ## 엔드포인트 상세
 
-`GET` /api/v1/payment
+`POST` /api/v1/payment
 
 
 #### **Request Parameters**
