@@ -13,7 +13,7 @@
 <img src="store_all_page2.png" style="width: 500px; height: auto;" alt="설명">
 
 
-### `GET` api/v1/category/all
+### `GET` /api/v1/category/all
 
 
 =======
@@ -80,7 +80,7 @@
 <img src="store_bakery_page1.png" style="width: 500px; height: auto;" alt="설명">
 <img src="store_bakery_page2.png" style="width: 500px; height: auto;" alt="설명">
 
-### `GET` api/v1/category/{categoryName}/{subcategoryName}
+### `GET` /api/v1/category/{categoryName}/{subcategoryName}
 
 
 =======
