@@ -109,32 +109,10 @@
 {
   "status": "success",
   "data": {
-    "notices": [
-      {
-        "id": ,
-        "title": "",
-        "isPinned": false,
-        "createdAt": ""
-      },
-      {
-        "id": ,
-        "title": "",
-        "isPinned": false,
-        "createdAt": ""
-      }
-    ],
-    "pinnedNotices": [
-      {
-        "id": ,
-        "title": "",
-        "isPinned": true,       
-        "createdAt": ""
-      }
-    ],
-    "pageInfo": {
-    "currentPage": 0,
-    "totalPages": 5,
-    }
+    "id": ,
+    "title": "",
+    "contentImageUrl": "",
+    "isPinned": true,
   }
 }
 ```
