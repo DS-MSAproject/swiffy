@@ -2,34 +2,60 @@
 
 <img src="p1 (1).png" style="width: 500px; height: auto;" alt="결제상세1">
 
-**GET** `/api/v1/orders/checkout`
+---
 
-* **Success Response**
+* **Request Body**:
 ```json
 {
-  "status": "success",
-  "data": {
-    "deliveryInfo": {
-      "title": "배송지",
-      "userName": "전인렬",
-      "phoneNumber": "010-5910-6393"
-      "email": "dlsfuf222@gmail.com",
-      "zipCode": "12345",
-      "baseAddress": "서울특별시 강남구 테헤란로",
-      "detailAddress": "101호",
-      "deliveryMessage": "부재 시 문 앞에 놓아주세요"
-    },
-    "orderItems": [
-      { "name": "어글어글 강원도 대관령 무염 황태채 40g", "price": 12000 },
-      { "name": "어글어글 우유껌 50g 7종", "price": 6500 }
-    ]
-  }
+  "selectionType": "회원 정보와 동일",
+  "receiverName": "전인렬",
+  "zipCode": "46915",
+  "baseAddress": "부산광역시 사상구...",
+  "detailAddress": "",
+  "phoneNumber": "010-5910-6393",
+  "email": "dlsfuf222@gmail.com",
+  "deliveryMessage": "-- 메시지 선택 (선택사항) --"
 }
 ```
 
 ---
 
-**핵심 요약:**
+**GET** `/api/v1/orders/checkout`
+
+* **Success Response**:
+```json
+{
+  "status": "success",
+  "data": {
+    "title": "주문/결제",
+    "cartCount": 2,
+    "userInformation": {
+      "name": "전인렬",
+      "phoneNumber": "010-5910-6393",
+      "email": "dlsfuf222@gmail.com"
+    },
+    "orderItems": [
+      {
+        "name": "어글어글 강원도 대관령 무염 황태채 40g",
+        "count": 1,
+        "price": 12000
+      },
+      {
+        "name": "어글어글 우유껌 50g 7종",
+        "option": "제주 당근 우유껌 50g",
+        "count": 1,
+        "price": 6500
+      }
+    ],
+    "shippingFee": 5000
+  }
+}
+```
+
+
+
+## **참고사항**
+
 
 
 <!-- <img src="payment_details/p1 (2).png" style="width: 500px; height: auto;" alt="결제상세2"> -->
