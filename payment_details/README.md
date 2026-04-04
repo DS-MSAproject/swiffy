@@ -97,6 +97,21 @@ Request Parameters
 
 ---
 
+#### **Request Parameters**
+
+| Name | Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+|  |  |  |  |
+
+#### **Request Body (JSON)**
+
+```json
+{
+}
+```
+
+---
+
 #### **Success Response**
 
 * **Code:** 200 OK
@@ -157,7 +172,6 @@ Request Parameters
 ```json
 {
   "status": "success",
-  "message": "배송지 정보가 성공적으로 반영되었습니다.",
   "data": {
     "receiverName": "전인렬",
     "fullAddress": "(46915) 부산 사상구 운산로 25 덕양환신아파트 나머지 주소 입력분",
