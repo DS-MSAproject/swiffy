@@ -2,53 +2,34 @@
 
 <img src="p1 (1).png" style="width: 500px; height: auto;" alt="결제상세1">
 
----
-
-## 엔드포인트 상세
 **GET** `/api/v1/orders/checkout`
 
-#### **Request Parameters**
-| Name | Type | Required | Description |
-| :--- | :--- | :---: | :--- |
-| userId | Long | Y | 사용자 고유 번호 |
-| cartItemIds | String | Y | 주문할 항목 ID들 (예: "1,2,5") |
-
----
-
-## 엔드포인트 상세
-**POST** `/api/v1/orders`
-
-#### **Request Body (JSON)**
+* **Success Response**
 ```json
 {
-  "userId": 1,
-  "deliveryInfo": {
-    "receiverName": "김민규",
-    "receiverPhone": "010-2059-5477",
-    "email": "gjtjfud@naver.com",
-    "zipCode": "12345",
-    "baseAddress": "서울특별시 강남구 테헤란로",
-    "detailAddress": "101호",
-    "deliveryMessage": "부재 시 문 앞에 놓아주세요"
-  },
-  "orderItems": [
-    { "cartItemId": 105, "count": 1 },
-    { "cartItemId": 106, "count": 1 }
-  ],
-  "paymentMethod": "CARD"
-}
-```
-
-#### **Success Response**
-```json
-{
+  "status": "success",
+  "data": {
+    "deliveryInfo": {
+      "title": "배송지",
+      "userName": "전인렬",
+      "phoneNumber": "010-5910-6393"
+      "email": "dlsfuf222@gmail.com",
+      "zipCode": "12345",
+      "baseAddress": "서울특별시 강남구 테헤란로",
+      "detailAddress": "101호",
+      "deliveryMessage": "부재 시 문 앞에 놓아주세요"
+    },
+    "orderItems": [
+      { "name": "어글어글 강원도 대관령 무염 황태채 40g", "price": 12000 },
+      { "name": "어글어글 우유껌 50g 7종", "price": 6500 }
+    ]
+  }
 }
 ```
 
 ---
 
-### **참고사항**
-
+**핵심 요약:**
 
 
 <!-- <img src="payment_details/p1 (2).png" style="width: 500px; height: auto;" alt="결제상세2"> -->
