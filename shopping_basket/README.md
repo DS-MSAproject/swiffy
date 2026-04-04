@@ -94,7 +94,6 @@
   "status": "success",
   "data": {
     "imageUrl" : ""
-    "productUrl" : ""
     "productName" : ""
     "price" :
     "discountPrice" :
