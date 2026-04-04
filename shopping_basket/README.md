@@ -74,6 +74,7 @@
 #### **Request Body**
 ```json
 {
+  "option" :
   "옵션변경" :
   "삭제" :
   "wishlist" :
@@ -150,7 +151,6 @@
   "status": "success",
   "data": {
     "imageUrl" : ""
-    "productUrl" : ""
     "productName" : ""
     "price" :
     "discountPrice" :
