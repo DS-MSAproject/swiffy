@@ -1,13 +1,15 @@
 ### 1. API 개요
-> **Base URL:** https://api.example.com/api/v1
-
+* **Base URL:** https://api.example.com/api/v1
+* **Authentication:** Bearer Token (Header: ```Authorization: Bearer {YOUR_TOKEN}```)
 
 <img src="1.png" style="width: 500px; height: auto;" alt="설명">
 <img src="2.png" style="width: 500px; height: auto;" alt="설명">
 
+## 프로필
 
 ### 엔드포인트 상세
 ```GET /profile```
+
 #### **Request Headers**
 | Name | Value / Type | Required | Description |
 | :--- | :--- | :---: | :--- |
@@ -62,19 +64,14 @@
   }
 }
 ```
-### 회의 내용
-
-적립금
-등급
-쿠폰 개수
-주문내역
-최근주문내역(입금전 / 배송준비중 / 배송중 / 배송완료 / 취소 / 교환 / 반품)
-
-
+-----------------------------------------------------------------
 <img src="3.png" style="width: 500px; height: auto;" alt="설명">
+
+## 주문 조회
 
 ### 엔드포인트 상세
 ```GET /orders```
+
 #### **Request Headers**
 | Name | Value / Type | Required | Description |
 | :--- | :--- | :---: | :--- |
@@ -127,23 +124,19 @@
   }
 }
 ```
-### 회의 내용
+### 추후 고려 사항
 ```
-기간별 상품주문내역
-상품 주문 날짜
-주문번호
-이미지
-타이틀
-가격
-수량
-옵션
 배송상태 ex) 배송중 / 총 결제금액(상품구매금액 + 배송비 - 총할인금액)
 배송조회 누르면 배송정보를 뿌림(보류)
 구매후기 (없으면 구매후기 작성 페이지로)
 주문조회 10개씩
 ```
+----------------------------------------------------------------------
+## 상세보기
+
 ### 엔드포인트 상세
 ```GET /orders{order_number}```
+ 
 #### **Request Headers**
 | Name | Value / Type | Required | Description |
 | :--- | :--- | :---: | :--- |
@@ -208,23 +201,10 @@
   }
 }
 ```
-### 회의 내용
-상세보기
-```
-주문번호
-주문일자
-주문자
-주문처리상태
-주문한 상품 총 개수
-주문리스트 ( 이미지 / 타이틀 / 수량 / 옵션 / 상태 )
-결제 정보 ( 결제금액 / 할인금액 / 배송비 / 결제예정금액 )
-배송지 정보 ( 수령지 / 받으시는분 / 우편번호 / 주소 / 휴대전화 / 배송메시지 )
-환불 정보 ( 상품이름 / 수량 / 환불일자 / 환불처리상태 / 상품금액 + 배송비 합계 / 환불수단 )
-```
-
+------------------------------------------------------------------
 <img src="3_1.png" style="width: 500px; height: auto;" alt="설명">
 
-
+## 취소/교환반품 내역
 ### 엔드포인트 상세
 ```GET /orders/{order_number}/cs-history```
 #### **Request Headers**
@@ -291,13 +271,7 @@
 }
 ```
 
-### 회의내용
-```
-취소/교환반품 내역
-위와 동일
-```
-
-Res
+Res(해야됨)
 ```
 기간 (오늘 / 1개월 / 3개월 / 6개월 )
 상세날짜 정보
@@ -353,121 +327,641 @@ Res
     "updated_at": "2026-04-03T17:15:00Z"
   }
 }
-```
-### 회의내용
-#### 회원정보 수정
 
 ```
-아이디
-이름
-전화번호
-이메일
-주소 ( 주소를 입력했을 시 )
-수신여부 (sns/이메일)
-```
-Res
-```
-비밀번호
-비밀번호확인
-주소 ( 첫가입시 )
-휴대전화
-수신여부 ( 수신함 수신안함 )
-이메일
-회원탈퇴
+## 회원정보 수정
 
+### 엔드포인트 상세
+```PUT /users/profile```
+
+#### **Request Parameters**
+
+#### **Request Headers**
+| Name | Value / Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| `Authorization` | `Bearer {token}` | ✅ | 본인 확인을 위한 인증 토큰 |
+| `Content-Type` | `application/json` | ✅ | 요청 본문의 데이터 형식 |
+
+#### **Request Body (JSON)**
+| Name | Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| `current_password` | `String` | ✅ | 정보 수정을 위한 현재 비밀번호 확인 |
+| `new_password` | `String` | ❌ | 변경할 새 비밀번호 (변경 시에만 입력) |
+| `confirm_password` | `String` | ❌ | 새 비밀번호 확인 (프론트/백엔드 교차 검증) |
+| `phone_number` | `String` | ✅ | 휴대전화 번호 |
+| `email` | `String` | ✅ | 이메일 주소 |
+| `address` | `Object` | ❌ | 주소 정보 (최초 등록 또는 변경 시) |
+| `marketing_consent` | `Boolean` | ✅ | 수신여부 (true: 수신함 / false: 수신안함) |
+
+#### **Success Response**
+* **Code:** `200 OK`
+* **Content:** 수정 후 최신화된 정보를 반환합니다.
+```json
+{
+  "status": "success",
+  "data": {
+    "user_id": "seonguk95",
+    "name": "김선국",
+    "email": "seonguk@example.com",
+    "phone_number": "010-1234-5678",
+    "address": {
+      "zip_code": "48058",
+      "base_address": "부산광역시 해운대구 우동",
+      "detail_address": "센텀중앙로 123",
+      "is_first_registration": false
+    },
+    "marketing_consent": true,
+    "updated_at": "2026-04-04T15:30:00Z"
+  }
+}
 ```
+------------------------------------------
+### 회원 탈퇴 처리
+```DELETE /users```
 
+#### **Request Headers**
+| Name | Value / Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| `Authorization` | `Bearer {token}` | ✅ | 본인 확인을 위한 인증 토큰 |
 
+#### **Request Body (JSON)**
+| Name | Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| `password` | `String` | ✅ | 탈퇴 확정을 위한 비밀번호 재확인 |
+| `reason` | `String` | ❌ | 탈퇴 사유 (서비스 개선 목적) |
+
+#### **Success Response**
+* **Code:** `200 OK`
+* **Content:**
+```json
+{
+  "status": "success",
+  "message": "회원 탈퇴가 완료되었습니다. 그동안 이용해 주셔서 감사합니다.",
+  "data": {
+    "withdrawal_date": "2026-04-04T15:40:00Z"
+  }
+}
+```
+----------------------------------------------------------------------------
 <img src="5.png" style="width: 500px; height: auto;" alt="설명">
 
-```
-관심상품리스트 ( 이미지 / 타이틀 / 가격 / 옵션 )
-```
-Res 
-```
-옵션
-장바구니 담기
-삭제여부
-주문여
-```
+## 관심상품리스트
 
+### 엔드포인트 상세
+```GET /users/wishlist```
+
+#### **Request Headers**
+| Name | Value / Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| `Authorization` | `Bearer {token}` | ✅ | API 접근을 위한 인증 토큰 |
+| `Accept` | `application/json` | ✅ | 응답받을 데이터 형식 지정 |
+
+#### **Request Parameters**
+| Name | Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| `id` | `Integer` | ✅ | 사용자의 고유 ID (Path Variable) |
+| `page` | `Integer` | ❌ | 조회할 페이지 번호 (기본값: 1) |
+| `limit` | `Integer` | ❌ | 한 페이지에 보여줄 상품 개수 (기본값: 20) |
+
+#### **Success Response**
+* **Code:** `200 OK`
+* **Response Headers:**
+  * `Content-Type: application/json; charset=utf-8`
+* **content:**
+```json
+{
+  "status": "success",
+  "data": {
+    "total_count": 5,
+    "wishlist": [
+      {
+        "product_id": 1024,
+        "image_url": "https://cdn.petfood.com/products/beef_stew_01.jpg",
+        "title": "[수제간식] 소고기 야채 스튜 150g",
+        "original_price": 12000,
+        "discount_price": 9900,
+        "option_summary": "용량: 150g / 패키지: 파우치",
+        "is_out_of_stock": false,
+        "added_at": "2026-04-01T10:30:00Z"
+      },
+      {
+        "product_id": 882,
+        "image_url": "https://cdn.petfood.com/products/dental_chew.jpg",
+        "title": "눈물 자국 개선 덴탈껌 30개입",
+        "original_price": 18000,
+        "discount_price": 18000,
+        "option_summary": "사이즈: S (소형견용)",
+        "is_out_of_stock": true,
+        "added_at": "2026-03-28T15:45:12Z"
+      }
+    ]
+  }
+}
+```
+--------------------------------------------------------------------
 <img src="5_1.png" style="width: 500px; height: auto;" alt="설명">
 
-```
-백엔드에서 5개이상 있으면 문구가 뜨게 
-```
+### 엔드포인트 상세
+```GET /users/{id}/wishlist``` : 사용자의 관심 상품 리스트를 조회하며, 장바구니 연동 및 주문 여부 상태를 포함합니다.
 
+#### **Request Headers**
+| Name | Value / Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| `Authorization` | `Bearer {token}` | ✅ | API 접근을 위한 인증 토큰 |
+| `Accept` | `application/json` | ✅ | 응답받을 데이터 형식 지정 |
+
+#### **Success Response**
+* **Code:** `200 OK`
+* **content:**
+```json
+{
+  "status": "success",
+  "data": {
+    "total_count": 3,
+    "wishlist": [
+      {
+        "wishlist_id": 5001,
+        "product_id": 1024,
+        "image_url": "https://cdn.petfood.com/products/beef_stew.jpg",
+        "title": "[수제간식] 소고기 야채 스튜 150g",
+        "price": 9900,
+        "selected_option": {
+          "option_id": 201,
+          "option_name": "용량: 150g",
+          "extra_price": 0
+        },
+        "cart_action": {
+          "can_add_to_cart": true,
+          "stock_quantity": 50,
+          "message": "장바구니 담기 가능"
+        },
+        "order_status": {
+          "is_ordered": true,
+          "last_order_date": "2026-03-15T09:00:00Z"
+        },
+        "is_deleted": false,
+        "added_at": "2026-04-01T10:30:00Z"
+      },
+      {
+        "wishlist_id": 5002,
+        "product_id": 882,
+        "image_url": "https://cdn.petfood.com/products/dental_chew.jpg",
+        "title": "눈물 자국 개선 덴탈껌 30개입",
+        "price": 18000,
+        "selected_option": {
+          "option_id": null,
+          "option_name": "기본 선택",
+          "extra_price": 0
+        },
+        "cart_action": {
+          "can_add_to_cart": false,
+          "stock_quantity": 0,
+          "message": "품절된 상품입니다."
+        },
+        "order_status": {
+          "is_ordered": false,
+          "last_order_date": null
+        },
+        "is_deleted": false,
+        "added_at": "2026-03-28T15:45:12Z"
+      }
+    ]
+  }
+}
+```
+```
+백엔드에서 5개이상 있으면 문구가 뜨게 (뭔지 모르겠음. 일단 놔둡니다.선국)
+```
+--------------------------------------------------------------------
 <img src="6.png" style="width: 500px; height: auto;" alt="설명">
 
-```
-총적립금
-사용가능 적립금
-사용된 적립
-환불예정 적립금
-```
+## 적립금
 
+### 엔드포인트 상세
+```GET /users/points``` : 사용자의 적립금 요약 정보와 상세 이용 내역을 조회합니다
+
+#### **Request Headers**
+| Name | Value / Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| `Authorization` | `Bearer {token}` | ✅ | API 접근을 위한 인증 토큰 |
+| `Accept` | `application/json` | ✅ | 응답받을 데이터 형식 지정 |
+
+#### **Request Parameters**
+| Name | Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| `id` | `Integer` | ✅ | 사용자의 고유 ID (Path Variable) |
+| `page` | `Integer` | ❌ | 내역 조회를 위한 페이지 번호 (기본값: 1) |
+
+#### **Success Response**
+* **Code:** `200 OK`
+* **content:**
+```json
+{
+  "status": "success",
+  "data": {
+    "summary": {
+      "total_accumulated_points": 25000,
+      "available_points": 2000,
+      "used_points": 23000,
+      "pending_refund_points": 5000
+    },
+    "history": [
+      {
+        "point_id": 105,
+        "event_date": "2026-04-04T10:00:00Z",
+        "description": "상품 구매 시 적립 ([유기농] 연어 사료)",
+        "amount": 450,
+        "type": "EARNED",
+        "type_text": "적립"
+      },
+      {
+        "point_id": 102,
+        "event_date": "2026-04-01T15:30:00Z",
+        "description": "주문 결제 시 사용 (주문번호: 20260401-001)",
+        "amount": -5000,
+        "type": "USED",
+        "type_text": "사용"
+      },
+      {
+        "point_id": 98,
+        "event_date": "2026-03-25T09:12:00Z",
+        "description": "반품 처리로 인한 적립금 환불 예정",
+        "amount": 5000,
+        "type": "REFUND_PENDING",
+        "type_text": "환불예정"
+      }
+    ]
+  }
+}
+```
+--------------------------------------------------------------------
 <img src="6_1.png" style="width: 500px; height: auto;" alt="설명">
 
-```
-날짜
-적립금
-내용
-적립내역 10개씩
-```
+## 적립내역
 
-<img src="6_2.png" style="width: 500px; height: auto;" alt="설명">
-이거 안하는 내용
-<img src="6_3.png" style="width: 500px; height: auto;" alt="설명">
-이거 안하는 내
-<img src="7.png" style="width: 500px; height: auto;" alt="설명">
-예치금 보류
+### 엔드포인트 상세
+```GET /users/points/history``` : 사용자의 적립금 적립 및 사용 내역을 10개씩 페이징하여 조회합니다.
 
-<img src="7_1.png" style="width: 500px; height: auto;" alt="설명">
-예치금 보류
+#### **Request Headers**
+| Name | Value / Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| `Authorization` | `Bearer {token}` | ✅ | API 접근을 위한 인증 토큰 |
+| `Accept` | `application/json` | ✅ | 응답받을 데이터 형식 지정 |
+
+#### **Request Parameters**
+| Name | Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| `id` | `Integer` | ✅ | 사용자의 고유 ID (Path Variable) |
+| `page` | `Integer` | ❌ | 조회할 페이지 번호 (기본값: 1) |
+| `limit` | `Integer` | ❌ | 페이지 당 항목 수 (기본값: 10) |
+| `filter` | `String` | ❌ | 필터링 (ALL, EARNED, USED) |
+
+#### **Success Response**
+* **Code:** `200 OK`
+* **content:**
+```json
+{
+  "status": "success",
+  "data": {
+    "pagination": {
+      "total_count": 45,
+      "current_page": 1,
+      "total_pages": 5,
+      "limit": 10
+    },
+    "history": [
+      {
+        "event_date": "2026-04-04T17:30:00Z",
+        "description": "상품 구매 적립 (주문번호: 20260404-0012)",
+        "amount": 1250,
+        "type": "EARNED",
+        "type_text": "적립",
+        "balance_after": 5250
+      },
+      {
+        "event_date": "2026-04-01T12:00:00Z",
+        "description": "주문 시 적립금 사용 (주문번호: 20260401-0005)",
+        "amount": -3000,
+        "type": "USED",
+        "type_text": "사용",
+        "balance_after": 4000
+      },
+      {
+        "event_date": "2026-03-28T09:00:00Z",
+        "description": "리뷰 작성 보상 적립",
+        "amount": 500,
+        "type": "EARNED",
+        "type_text": "적립",
+        "balance_after": 7000
+      }
+    ]
+  }
+}
+```
+--------------------------------------------------------------------
 <img src="8.png" style="width: 500px; height: auto;" alt="설명">
 
-```
-쿠폰 내역
-쿠폰명
-할인율
-적립가능 여부
-비고
+## 쿠폰
 
-쿠폰내역 10개씩
-```
+### 엔드포인트 상세
+```GET /users/coupons```: 사용자가 보유한 쿠폰 리스트를 10개씩 페이징하여 조회합니다.
 
-Res
-```
-쿠폰인증내역
-```
+#### **Request Headers**
+| Name | Value / Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| `Authorization` | `Bearer {token}` | ✅ | API 접근을 위한 인증 토큰 |
+| `Accept` | `application/json` | ✅ | 응답받을 데이터 형식 지정 |
 
+#### **Request Parameters**
+| Name | Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| `id` | `Integer` | ✅ | 사용자의 고유 ID (Path Variable) |
+| `page` | `Integer` | ❌ | 조회할 페이지 번호 (기본값: 1) |
+| `status` | `String` | ❌ | 쿠폰 상태 필터 (AVAILABLE, USED, EXPIRED) |
+
+#### **Success Response**
+* **Code:** `200 OK`
+* **content:**
+```json
+{
+  "status": "success",
+  "data": {
+    "pagination": {
+      "total_count": 12,
+      "current_page": 1,
+      "total_pages": 2,
+      "limit": 10
+    },
+    "coupons": [
+      {
+        "coupon_id": "CPN-2026-001",
+        "coupon_name": "신규 가입 축하 10% 할인 쿠폰",
+        "discount_rate": 10,
+        "discount_type": "PERCENTAGE",
+        "is_point_earnable": false,
+        "expiry_date": "2026-05-01T23:59:59Z",
+        "remarks": "3만원 이상 구매 시 사용 가능 / 타 쿠폰과 중복 불가",
+        "status": "AVAILABLE",
+        "status_text": "사용가능"
+      },
+      {
+        "coupon_id": "CPN-2026-005",
+        "coupon_name": "리틀버디 첫 구매 감사 쿠폰",
+        "discount_value": 5000,
+        "discount_type": "FIXED_AMOUNT",
+        "is_point_earnable": true,
+        "expiry_date": "2026-04-30T23:59:59Z",
+        "remarks": "전 상품 사용 가능 / 적립금 중복 적립 가능",
+        "status": "AVAILABLE",
+        "status_text": "사용가능"
+      }
+    ]
+  }
+}
+```
+--------------------------------------------------------------------
 <img src="8_1.png" style="width: 500px; height: auto;" alt="설명">
-
-
 <img src="8_2.png" style="width: 500px; height: auto;" alt="설명">
+
+## 쿠폰인증내역 
+
+### 엔드포인트 상세
+```GET /users/coupons/registrations```: 사용자가 코드를 입력하여 인증/등록한 쿠폰의 상세 내역을 10개씩 조회합니다.
+
+#### **Request Headers**
+| Name | Value / Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| `Authorization` | `Bearer {token}` | ✅ | API 접근을 위한 인증 토큰 |
+| `Accept` | `application/json` | ✅ | 응답받을 데이터 형식 지정 |
+
+#### **Request Parameters**
+| Name | Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| `id` | `Integer` | ✅ | 사용자의 고유 ID (Path Variable) |
+| `page` | `Integer` | ❌ | 조회할 페이지 번호 (기본값: 1) |
+
+#### **Success Response**
+* **Code:** `200 OK`
+* **content:**
+```json
+{
+  "status": "success",
+  "data": {
+    "pagination": {
+      "total_count": 25,
+      "current_page": 1,
+      "total_pages": 3,
+      "limit": 10
+    },
+    "registration_history": [
+      {
+        "auth_id": 501,
+        "auth_date": "2026-04-04T18:00:00Z",
+        "auth_code": "PET-FOOD-2026-SALE",
+        "coupon_name": "[인증] 봄맞이 전품목 15% 할인 쿠폰",
+        "discount_rate": 15,
+        "is_point_earnable": false,
+        "status": "REGISTERED",
+        "status_text": "인증완료",
+        "remarks": "인증 후 30일 이내 사용 가능 / 정기배송 상품 제외"
+      },
+      {
+        "auth_id": 482,
+        "auth_date": "2026-03-20T10:15:00Z",
+        "auth_code": "WELCOME-LITTLE-BUDDY",
+        "coupon_name": "신규 가입 기념 5,000원 할인 쿠폰",
+        "discount_value": 5000,
+        "is_point_earnable": true,
+        "status": "USED",
+        "status_text": "사용완료",
+        "remarks": "전 상품 사용 가능 / 적립금 중복 혜택 적용"
+      }
+    ]
+  }
+}
+```
+--------------------------------------------------------------------
 <img src="9.png" style="width: 500px; height: auto;" alt="설명">
 <img src="10.png" style="width: 500px; height: auto;" alt="설명">
 <img src="11.png" style="width: 500px; height: auto;" alt="설명">
+
+## 게시물관리
+
+--------------------------------------------------------------------
 <img src="12.png" style="width: 500px; height: auto;" alt="설명">
 
-```
-배송지 이름 ( 지정 안하면 미지정)
-저장된 주소 ( 우편번호 / 주소 / 국가번호 / 전화번호 )
-```
+## 주소록관리1
 
-Res
-```
-신규 배송지 등록 ( 배송지명 / 성명 / 주소 / 휴대전화 / 기본 배송지 저장여부 )
-배송지 수정 ( 배송지명 / 성명 / 주소 / 휴대전화 / 기본 배송지 저장여부 )
-삭제요
-```
+### 엔드포인트 상세
 
+* ```GET /users/addresses```: 사용자가 저장한 모든 배송지 리스트를 조회합니다.
+* ```POST /users/addresses```: 새로운 배송지 추가. 이때 address_name이 비어있으면 서버에서 "미지정"으로 저장.
+* ```PUT /users/addresses```: 특정 배송지 정보 수정.
+* ```DELETE /users/addresses```: 배송지 삭제. (단, 기본 배송지는 삭제 전 경고 또는 다른 주소로 기본값 이전 로직 필요)
+
+#### **Request Headers**
+| Name | Value / Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| `Authorization` | `Bearer {token}` | ✅ | API 접근을 위한 인증 토큰 |
+| `Accept` | `application/json` | ✅ | 응답받을 데이터 형식 지정 |
+
+#### **Success Response**
+* **Code:** `200 OK`
+* **content:**
+```json
+{
+  "status": "success",
+  "data": {
+    "total_count": 2,
+    "addresses": [
+      {
+        "address_id": 101,
+        "address_name": "우리집",
+        "is_default": true,
+        "recipient_name": "김선국",
+        "zip_code": "48058",
+        "base_address": "부산광역시 해운대구 우동",
+        "detail_address": "센텀중앙로 123",
+        "country_code": "KR (+82)",
+        "phone_number": "010-1234-5678"
+      },
+      {
+        "address_id": 105,
+        "address_name": "미지정",
+        "is_default": false,
+        "recipient_name": "이멍멍",
+        "zip_code": "06035",
+        "base_address": "서울특별시 강남구 가로수길",
+        "detail_address": "45-6 3층",
+        "country_code": "KR (+82)",
+        "phone_number": "010-9876-5432"
+      }
+    ]
+  }
+}
+```
+--------------------------------------------------------------------
 <img src="13.png" style="width: 500px; height: auto;" alt="설명">
+
+## 주소록관리2
+
+### 엔드포인트 상세
+```POST /users/addresses```: (신규 등록) 새로운 배송지를 추가합니다.
+
+#### **Request Body (JSON)**
+```json
+{
+  "address_name": "우리집", 
+  "recipient_name": "홍길동",
+  "zip_code": "48058",
+  "base_address": "부산광역시 해운대구 우동",
+  "detail_address": "센텀중앙로 123",
+  "phone_number": "010-1234-5678",
+  "is_default": true 
+}
+```
+* Note: ```address_name```이 비어있을 경우 서버에서 자동으로 **"미지정"**으로 저장합니다.
+
+```PUT /users/addresses```: (정보 수정) 기존에 저장된 특정 배송지의 정보를 수정합니다.
+* **Path Variable:** ```address_id``` (수정할 배송지의 고유 번호)
+* **Request Body (JSON):** 등록과 동일한 필드를 사용하며, 변경된 값만 보내거나 전체를 다시 보냅니다
+
+```DELETE /users/addresses```: (삭제 요청) 더 이상 사용하지 않는 배송지 정보를 삭제합니다.
+
+#### **Success Response**
+* **Code:** `200 OK`
+* **content:**
+```json
+{
+  "status": "success",
+  "message": "배송지 정보가 삭제되었습니다.",
+  "data": {
+    "deleted_address_id": 101
+  }
+}
+```
+**성공 응답 예시 (등록/수정 공통)**
+```json
+{
+  "status": "success",
+  "message": "배송지 정보가 성공적으로 반영되었습니다.",
+  "data": {
+    "address_id": 101,
+    "address_name": "우리집",
+    "recipient_name": "홍길동",
+    "full_address": "(48058) 부산광역시 해운대구 우동 센텀중앙로 123",
+    "phone_number": "010-1234-5678",
+    "is_default": true,
+    "updated_at": "2026-04-04T18:30:00Z"
+  }
+}
+```
+
+## 최근 배송지 (추가 API)
+
+### 엔드포인트 상세
+```GET /users/addresses/checkout```: 결제 화면 진입 시, 즉시 렌더링해야 할 '기본 배송지' 1건과 최근에 주문했던 '최근 배송지 이력' 리스트를 함께 조회합니다.
+
+#### **Request Headers**
+| Name | Value / Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| `Authorization` | `Bearer {token}` | ✅ | API 접근을 위한 인증 토큰 |
+| `Accept` | `application/json` | ✅ | 응답받을 데이터 형식 지정 |
+
+#### **Request Parameters**
+| Name | Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| `id` | `Integer` | ✅ | 사용자의 고유 ID (Path Variable) |
+| `limit` | `Integer` | ❌ | 가져올 최근 배송지 개수 (기본값: 3) |
+
+#### **Success Response**
+* **Code:** `200 OK`
+* **content:**
+```json
+{
+  "status": "success",
+  "data": {
+    "default_address": {
+      "address_id": 101,
+      "address_name": "우리집",
+      "recipient_name": "김선국",
+      "zip_code": "48058",
+      "base_address": "부산광역시 해운대구 우동",
+      "detail_address": "센텀중앙로 123",
+      "phone_number": "010-1234-5678"
+    },
+    "recent_addresses": [
+      {
+        "order_number": "20260401-0005",
+        "used_at": "2026-04-01T12:00:00Z",
+        "recipient_name": "김선국",
+        "zip_code": "48058",
+        "base_address": "부산광역시 해운대구 우동",
+        "detail_address": "센텀중앙로 123",
+        "phone_number": "010-1234-5678",
+        "shipping_message": "문 앞에 두고 벨 눌러주세요."
+      },
+      {
+        "order_number": "20260315-0088",
+        "used_at": "2026-03-15T09:30:00Z",
+        "recipient_name": "이멍멍",
+        "zip_code": "06035",
+        "base_address": "서울특별시 강남구 가로수길",
+        "detail_address": "45-6 3층",
+        "phone_number": "010-9876-5432",
+        "shipping_message": "도착 전 연락 바랍니다."
+      }
+    ]
+  }
+}
+```
+--------------------------------------------------------------------
 <img src="14.png" style="width: 500px; height: auto;" alt="설명">
 
+## 정기배송 내역 (보류?)
 ```
 신청 내역
-혜지 내역
+해지 내역
 보류
 ```
 
@@ -478,9 +972,19 @@ Res
 <img src="comments.png" style="width: 500px; height: auto;" alt="설명">
 
 
-#### 참고사항1
-**`예치금(Deposit) vs 적립금(Points): 스크린샷에 두 항목이 모두 존재하므로, benefits 객체 내에서 명확히 분리하여 관리합니다.`**
+<img src="6_2.png" style="width: 500px; height: auto;" alt="설명">
 
-**`확장성: 향후 관심상품이나 게시물 개수가 업데이트될 때, activity_counts 객체만 갱신하여 응답하면 프론트엔드 UI에 즉시 반영됩니다.`**
+**`X`**
 
-**`보안: id를 통한 조회 시 토큰의 소유주와 일치하는지 서버 측 검증이 반드시 필요합니다. (403 Forbidden 처리)`**
+<img src="6_3.png" style="width: 500px; height: auto;" alt="설명">
+
+**`X`**
+
+<img src="7.png" style="width: 500px; height: auto;" alt="설명">
+
+**`보류`**
+
+<img src="7_1.png" style="width: 500px; height: auto;" alt="설명">
+
+**`보류`**
+
