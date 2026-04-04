@@ -4,6 +4,14 @@
 
 ---
 
+| Name | Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| **userId** | Long | Y | 현재 로그인한 사용자의 고유 번호 |
+| **cartItemIds** | String | Y | 장바구니에서 선택해서 넘어온 아이템 ID들 (예: "101,102") |
+| **orderId** | String | N | (이미 생성된 주문이 있다면) 해당 주문의 고유 번호 |
+| **userId** | Long | Y | 수정 주체인 사용자의 고유 번호 |
+| **userId** | Long | Y | 해당 사용자의 장바구니 담긴 개수를 조회하기 위함 |
+
 * **Request Body**:
 ```json
 {
