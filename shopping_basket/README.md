@@ -280,59 +280,66 @@
 
 
 <img src="delete_select1.png" style="width: 500px; height: auto;" alt="설명">
-<img src="delete_select2.png" style="width: 500px; height: auto;" alt="설명">
 
-=======
+
+---
 
 ## 엔드포인트 상세
-삭제  
-`DELETE` api/v1/product/{productId}  
+**DELETE** `/api/v1/cart/items`
+
+---
 
 #### **Request Parameters**
 
 | Name | Type | Required | Description |
 | :--- | :--- | :---: | :--- |
-|  |  | - | - |
+| userId | Long | Y | 삭제를 수행할 사용자 ID |
 
 #### **Request Body**
 ```json
 {
-  "삭제" :
+  "cartItemIds": [1, 2, 5]
 }
 ```
 
-
 #### **Success Response**
 
-  * **Code:** 200 OK
-  * **Content:**
-
-<!-- end list -->
+* **Code:** 200 OK
+* **Content:**
 
 ```json
 {
   "status": "success",
+  "message": "선택한 상품이 삭제되었습니다.",
   "data": {
-    "imageUrl" : ""
-    "productName" : ""
-    "price" :
-    "discountPrice" :
+    "deletedCount": 3,
+    "remainingItemCount": 3,
+    "totalOrderPrice": 0
   }
 }
 ```
 
 #### **Error Response**
 
-  * **Code:** 404 NOT FOUND
-  * **Content:** `{ "message": "User not found" }`
-  * **Code:** 401 UNAUTHORIZED
-  * **Content:** `{ "message": "Invalid token" }`
+* **Code:** 400 BAD REQUEST
+* **Content:** `{ "message": "삭제할 상품이 선택되지 않았습니다." }`
+* **Code:** 401 UNAUTHORIZED
+* **Content:** `{ "message": "Invalid token" }`
 
-#### 참고사항
+---
 
------
+#### **참고사항**
+* **다중 삭제**: 사용자가 선택한 여러 개의 `cartItemId`를 배열(`[]`)에 담아 한 번에 삭제 처리합니다.
+* **응답 데이터**: 삭제 후 남아있는 상품 개수(`remainingItemCount`)와 갱신된 결제 예정 금액을 응답하여 화면이 즉시 업데이트되도록 설계했습니다.
 
+---
+
+
+<img src="delete_select2.png" style="width: 500px; height: auto;" alt="설명">
 <img src="option_change1.png" style="width: 500px; height: auto;" alt="설명">
+
+
+
 <img src="option_change2.png" style="width: 500px; height: auto;" alt="설명">
 <img src="option_change3.png" style="width: 500px; height: auto;" alt="설명">
 <img src="product_like1.png" style="width: 500px; height: auto;" alt="설명">
