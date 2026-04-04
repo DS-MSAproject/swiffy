@@ -2,6 +2,67 @@
 
 <img src="p1 (1).png" style="width: 500px; height: auto;" alt="결제상세1">
 
+아차, 제가 **GET** 방식인 첫 번째 API에서 **Request Body**를 생략했었네요! 
+
+보통 **GET** 요청은 데이터를 URL 파라미터(Query String)에 담아 보내는 게 표준이라 Body를 잘 쓰지 않지만, 민규님이 통일감 있게 문서를 만들 수 있도록 **Request Body가 필요한 상세 주문 생성(POST)** 부분을 포함해서 다시 정리해 드릴게요.
+
+특히 사진 속 **배송지 입력** 부분은 사용자가 직접 값을 타이핑해서 보내야 하므로 `Request Body`가 아주 중요합니다.
+
+---
+
+## 1. 주문서 초기 정보 조회 (GET)
+> **설명:** 화면에 들어왔을 때 기존 정보를 "가져오는" 단계입니다. (Body 대신 파라미터 사용)
+
+## 엔드포인트 상세
+**GET** `/api/v1/orders/checkout`
+
+#### **Request Parameters**
+| Name | Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| userId | Long | Y | 사용자 고유 번호 |
+| cartItemIds | String | Y | 주문할 항목 ID들 (예: "1,2,5") |
+
+---
+
+## 2. 최종 주문 결제 (POST)
+> **설명:** 사진에 있는 이름, 주소, 휴대폰 번호를 모두 담아서 서버로 "보내는" 단계입니다. **Request Body가 필수입니다.**
+
+## 엔드포인트 상세
+**POST** `/api/v1/orders`
+
+#### **Request Body (JSON)**
+```json
+{
+  "userId": 1,
+  "deliveryInfo": {
+    "receiverName": "김민규",
+    "receiverPhone": "010-2059-5477",
+    "email": "gjtjfud@naver.com",
+    "zipCode": "12345",
+    "baseAddress": "서울특별시 강남구 테헤란로",
+    "detailAddress": "101호",
+    "deliveryMessage": "부재 시 문 앞에 놓아주세요"
+  },
+  "orderItems": [
+    { "cartItemId": 105, "count": 1 },
+    { "cartItemId": 106, "count": 1 }
+  ],
+  "paymentMethod": "CARD"
+}
+```
+
+#### **Success Response**
+```json
+{
+}
+```
+
+---
+
+### **참고사항**
+
+
+
 <!-- <img src="payment_details/p1 (2).png" style="width: 500px; height: auto;" alt="결제상세2"> -->
 
 <img src="p1 (2).png" style="width: 500px; height: auto;" alt="결제상세2">
@@ -26,10 +87,95 @@
 
 <img src="p1 (7).png" style="width: 500px; height: auto;" alt="결제상세7">
 
+
 <!-- <img src="payment_details/p1 (8).png" style="width: 500px; height: auto;" alt="결제상세8"> -->
 
 <img src="p1 (8).png" style="width: 500px; height: auto;" alt="결제상세8">
 
+## 엔드포인트 상세
+**GET** `/api/v1/delivery/messages`
+
+---
+
+#### **Success Response**
+
+* **Code:** 200 OK
+* **Content:**
+
+```json
+{
+  "status": "success",
+  "data": [
+    { "id": 1, "message": "배송 전에 미리 연락바랍니다." },
+    { "id": 2, "message": "부재 시 경비실에 맡겨주세요." },
+    { "id": 3, "message": "부재 시 문 앞에 놓아주세요." },
+    { "id": 4, "message": "빠른 배송 부탁드립니다." },
+    { "id": 5, "message": "택배함에 보관해 주세요." },
+    { "id": 6, "message": "직접 입력" }
+  ]
+}
+```
+
+---
+
+## 엔드포인트 상세
+**PUT** `/api/v1/orders/checkout/delivery`
+
+---
+
+#### **Request Parameters**
+
+| Name | Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| userId | Long | Y | 주문을 진행 중인 사용자 ID |
+
+#### **Request Body (JSON)**
+
+```json
+{
+  "receiverName": "최서령",
+  "zipCode": "46915",
+  "baseAddress": "부산 사상구 운산로 25 덕양환신아파트",
+  "detailAddress": "나머지 주소 입력분", 
+  "phoneNumber": "010-2059-5477",
+  "email": "gjtjfud@naver.com",
+  "deliveryMessage": "부재 시 문 앞에 놓아주세요.",
+  "isDefaultAddress": true
+}
+```
+
+#### **Success Response**
+
+  * **Code:** 200 OK
+  * **Content:**
+
+```json
+{
+  "status": "success",
+  "message": "배송지 정보가 성공적으로 반영되었습니다.",
+  "data": {
+    "receiverName": "최서령",
+    "fullAddress": "(46915) 부산 사상구 운산로 25 덕양환신아파트 나머지 주소 입력분",
+    "deliveryMessage": "부재 시 문 앞에 놓아주세요."
+  }
+}
+```
+
+#### **Error Response**
+
+  * **Code:** 400 BAD REQUEST
+  * **Content:** `{ "message": "필수 입력 항목(이름, 주소, 연락처)이 누락되었습니다." }`
+  * **Code:** 401 UNAUTHORIZED
+  * **Content:** `{ "message": "인증되지 않은 사용자입니다." }`
+
+---
+
+#### **참고사항**
+* **배송지 선택**: '회원 정보와 동일' 또는 '새로운 배송지' 선택에 따라 `Request Body`의 값이 달라집니다. 사진에서는 '최서령'이라는 이름이 입력되어 있으므로 해당 값이 전달됩니다.
+* **나머지 주소**: 사진 중앙의 빨간 박스인 **'나머지 주소(선택 입력 기능)'** 필드는 `detailAddress`에 매핑됩니다.
+* **배송 메시지**: 하단 드롭다운에서 선택한 **"부재 시 문 앞에 놓아주세요."**라는 문구가 `deliveryMessage`로 전달됩니다. 만약 '직접 입력'을 선택하면 사용자가 타이핑한 내용이 전송됩니다.
+
+---
 
 <!-- <img src="payment_details/p1 (9).png" style="width: 500px; height: auto;" alt="결제상세9"> -->
 
