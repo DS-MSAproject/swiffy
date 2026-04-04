@@ -8,10 +8,6 @@
 <img src="1.png" style="width: 500px; height: auto;" alt="설명">
 <img src="2.png" style="width: 500px; height: auto;" alt="설명">
 
-보내주신 두 번째 사진의 **장바구니 담기 팝업** 화면을 기준으로, 작성하신 틀을 더 전문적인 API 문서 형식으로 다듬어 보았습니다. 
-
-특히 **Request Body**는 클라이언트가 서버로 '전송'하는 데이터(어떤 상품을 담을지)로 구성하고, **Success Response**는 사진 속 UI를 그리기 위해 필요한 '응답' 데이터로 매칭하여 수정했습니다.
-
 ---
 
 #### **Request Parameters**
@@ -60,10 +56,6 @@
 <img src="3.png" style="width: 500px; height: auto;" alt="설명">
 
 ---
-
-만약 지금 작성 중인 문서가 **"장바구니 화면을 그리기 위한 데이터 조회"** 목적이라면, 아래처럼 **엔드포인트 상세**와 **Success Response**에 버튼들이 연결될 **URL**이나 **상태값**만 포함시켜 주면 됩니다. 
-
-수정된 최종 버전입니다!
 
 ## 엔드포인트 상세
 **GET** `/api/v1/cart`
