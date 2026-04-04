@@ -4,8 +4,6 @@
 
 ---
 
-## 1. 주문서 초기 정보 조회 (GET)
-
 ## 엔드포인트 상세
 **GET** `/api/v1/orders/checkout`
 
