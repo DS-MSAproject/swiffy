@@ -1,18 +1,14 @@
+#### **Request Headers** 공통사항
+
+| Name | Value / Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| `Authorization` | `JWT(AccessToken/RefreshToken), Cookie` | ✅ | API 접근을 위한 인증 토큰 |
+| `Accept` | `application/json` | ✅ | 응답받을 데이터 형식 지정 |
+
 <img src="1.png" style="width: 500px; height: auto;" alt="설명">
 <img src="2.png" style="width: 500px; height: auto;" alt="설명">
-<img src="3.png" style="width: 500px; height: auto;" alt="설명">
 
 =======
-
-## 엔드포인트 상세
-삭제  
-`DELETE` api/v1/product/{productId}  
-관심상품  
-`POST` api/v1/wishlist/{productId}  
-옵션변경  
-`PUT` api/v1/option/{productId}  
-주문하기  
-`POST` api/v1/product/{productId}  
 
 #### **Request Parameters**
 
@@ -23,7 +19,61 @@
 #### **Request Body**
 ```json
 {
-  "option" :
+  "구매하기" :
+  "장바구니 이동" :
+  "쇼핑계속하기" :
+}
+```
+
+
+#### **Success Response**
+
+  * **Code:** 200 OK
+  * **Content:**
+
+<!-- end list -->
+
+```json
+{
+  "status": "success",
+  "data": {
+    "imageUrl" : ""
+    "productName" : ""
+    "price" :
+    "option" :
+    "구매하기Url" :
+    "장바구니Url" :
+    "쇼핑계속하기Url" :
+  }
+}
+```
+
+#### **Error Response**
+
+  * **Code:** 404 NOT FOUND
+  * **Content:** `{ "message": "User not found" }`
+  * **Code:** 401 UNAUTHORIZED
+  * **Content:** `{ "message": "Invalid token" }`
+
+#### 참고사항
+
+-----
+
+<img src="3.png" style="width: 500px; height: auto;" alt="설명">
+
+=======
+
+## 엔드포인트 상세
+
+#### **Request Parameters**
+
+| Name | Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+|  |  | - | - |
+
+#### **Request Body**
+```json
+{
   "옵션변경" :
   "삭제" :
   "wishlist" :
@@ -68,6 +118,58 @@
 <img src="all_select2.png" style="width: 500px; height: auto;" alt="설명">
 <img src="delete_select1.png" style="width: 500px; height: auto;" alt="설명">
 <img src="delete_select2.png" style="width: 500px; height: auto;" alt="설명">
+
+=======
+
+## 엔드포인트 상세
+삭제  
+`DELETE` api/v1/product/{productId}  
+
+#### **Request Parameters**
+
+| Name | Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+|  |  | - | - |
+
+#### **Request Body**
+```json
+{
+  "삭제" :
+}
+```
+
+
+#### **Success Response**
+
+  * **Code:** 200 OK
+  * **Content:**
+
+<!-- end list -->
+
+```json
+{
+  "status": "success",
+  "data": {
+    "imageUrl" : ""
+    "productUrl" : ""
+    "productName" : ""
+    "price" :
+    "discountPrice" :
+  }
+}
+```
+
+#### **Error Response**
+
+  * **Code:** 404 NOT FOUND
+  * **Content:** `{ "message": "User not found" }`
+  * **Code:** 401 UNAUTHORIZED
+  * **Content:** `{ "message": "Invalid token" }`
+
+#### 참고사항
+
+-----
+
 <img src="option_change1.png" style="width: 500px; height: auto;" alt="설명">
 <img src="option_change2.png" style="width: 500px; height: auto;" alt="설명">
 <img src="option_change3.png" style="width: 500px; height: auto;" alt="설명">
