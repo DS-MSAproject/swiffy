@@ -197,110 +197,110 @@ Request Parameters
 
 <img src="p1 (9).png" style="width: 500px; height: auto;" alt="결제상세9">
 
-<!-- <img src="payment_details/p1 (10).png" style="width: 500px; height: auto;" alt="결제상세10"> -->
+---
 
-<img src="p1 (10).png" style="width: 500px; height: auto;" alt="결제상세10">
-
-=======
-## 엔드포인트 상세
-
-`POST` /api/v1/payment
-
+### **주문/결제 상세 정보 조회 (GET)**
+**엔드포인트:** `GET /api/v1/orders/checkout`
 
 #### **Request Parameters**
 
 | Name | Type | Required | Description |
 | :--- | :--- | :---: | :--- |
-| productId | Long | - | - |
-| imageUrl | String | - | - |
-| productName | String | - | - |
-| productList | String | - | - |
-| price | Integer | - | - |
-| discountPrice | Integer | - | - |
-| count | Integer | - | 상품 갯수 |
-| option | String | - | - |
-| totalPrice | Integer | - | - |
-| 총 배송비 | Integer | - | - |
-| totalDiscountPrice | Integer | - | - |
-| coupon | String | - |  |
-| couponCount | Integer | - | 유저가 가지고 있는 갯수 |
-| 쿠폰 결제 조건 | String | - | - |
-| 적립금 | Integer | - | - |
-| 적립금사용 여부 | Integer | - | - |
-| 적용금액 | Integer | - | 총 할인+쿠폰+적립가격 |
-| 주문상품총가격 | Integer | - | |
-| 적립혜택 | Integer | - | 1% 소수점 버림 |
-| message | String | - | 선택사항 |
-| 받는사람 | String | - | - |
-| phone | String | - | - |
-| email | String | - | - |
-| 배송지 | String | - | - |
-| 배송지 저장유무 | Boolean | - | - |
-| 할인코드 | String | - | 쿠폰과 할인코드는 동시적용 불가 |
-| 쿠폰적용 여부 |  | - | - |
-| 결제수단 | String | - | - |
-
-
+| **userId** | Long | Y | 로그인한 사용자의 고유 번호 |
+| **cartItemIds** | String | Y | 주문할 장바구니 아이템 ID 목록 (예: "105,106") |
 
 #### **Request Body**
 ```json
 {
-  "message" : "",
-  "받는사람" : "" ,
-  "phone" : "",
-  "email" : "",
-  "주소" : "",
-  "배송지 저장여부" : "",
-  "할인코드" : "",
-  "쿠폰적용 여부" : "",
-  "적립금사용 여부" : "",
-  "결제 수단" : ""
 }
 ```
 
-
-#### **Success Response**
-
-  * **Code:** 200 OK
-  * **Content:**
-
-<!-- end list -->
+#### **Success Response (JSON)**
 
 ```json
 {
   "status": "success",
   "data": {
-    "productId" : ,
-    "productList" : "",
-    "imageUrl" : "",
-    "option" : "",
-    "count" : ,
-    "price" : ,
-    "totalDiscountPrice" : "",
-    "coupon" : "",
-    "쿠폰 결제 조건" : ,
-    "적립금 잔액" : ,
-    "적용금액" : ,
-    "주문상품" : ,
-    "배송비" : ,
-    "적립혜택" : 
+    "pageTitle": "주문/결제",
+    "orderItems": [
+      {
+        "productName": "어글어글 강원도 대관령 무염 황태채 40g",
+        "quantity": 1,
+        "price": 12000,
+        "imageUrl": "https://swiffy.com/items/fish_snack.png"
+      },
+      {
+        "productName": "어글어글 우유껌 50g 7종",
+        "optionName": "제주 당근 우유껌 50g",
+        "quantity": 1,
+        "price": 6500,
+        "imageUrl": "https://swiffy.com/items/milk_gum.png"
+      }
+    ],
+    "paymentSummary": {
+      "totalProductPrice": 18500,
+      "shippingFee": 5000,
+      "totalDiscount": 0,
+      "finalPaymentAmount": 23500
+    }
   }
 }
 ```
 
-#### **Error Response**
+---
 
-  * **Code:** 404 NOT FOUND
-  * **Content:** `{ "message": "User not found" }`
-  * **Code:** 401 UNAUTHORIZED
-  * **Content:** `{ "message": "Invalid token" }`
+### **참고사항**
+* **orderItems**: 사진 왼쪽 빨간 박스의 상품 2종 정보를 담고 있습니다.
+* **paymentSummary**: 사진 오른쪽 빨간 박스의 **배송비 5,000원**과 **최종 결제 금액 23,500원**을 계산해서 보여줍니다.
 
-#### 참고사항
-쿠폰에 표시되야하는 것 :
-* 쿠폰이름
-* 유효기간
-* 사용가능여부
-* 가격 할인 총가격 ( 상품 할인, 적립 가능유무, 배송비 할인, 주문서 할인??)
+<!-- <img src="payment_details/p1 (10).png" style="width: 500px; height: auto;" alt="결제상세10"> -->
+
+<img src="p1 (10).png" style="width: 500px; height: auto;" alt="결제상세10">
+
+---
+
+**엔드포인트:** `POST /api/v1/orders/payment`
+
+#### **Request Parameters**
+| Name | Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| **userId** | Long | Y | 사용자 고유 ID |
+
+#### **Request Body (JSON)**
+
+```json
+{
+  "orderId": "ORD-20260405-001",
+  "paymentMethod": "TOSS_PAY", // 사진의 'toss pay' 선택 반영
+  "finalAmount": 23500, // 사진 하단 버튼의 '23,500원'
+  "savePaymentMethod": true, // 사진 하단 '결제수단과 입력정보를 다음에도 사용' 체크 여부
+  "paymentVendor": "TOSS"
+}
+```
+
+#### **Success Response (JSON)**
+
+```json
+{
+  "status": "success",
+  "message": "결제가 성공적으로 완료되었습니다.",
+  "data": {
+    "receiptId": "REC-99823445",
+    "paymentMethod": "토스페이",
+    "paidAt": "2026-04-05 14:40:00",
+    "finalAmount": 23500
+  }
+}
+```
+
+---
+
+### **참고사항**
+* **결제수단 / toss pay**: 사용자가 여러 수단 중 토스페이를 클릭했음을 나타내며, `paymentMethod` 필드로 전달됩니다.
+* **결제수단과 입력정보들 다음에도 사용**: 이 체크박스는 사용자의 편의를 위해 결제 수단을 저장할지 결정하는 `savePaymentMethod` 값으로 매핑됩니다.
+* **23,500원 결제하기**: 이 버튼을 누르는 순간 위의 `Request Body`와 함께 POST 요청이 날아가게 됩니다.
+
+
 
 -----
 
@@ -320,91 +320,113 @@ Request Parameters
 
 <img src="p1 (14).png" style="width: 500px; height: auto;" alt="결제상세14">
 
-<!-- <img src="payment_details/p1 (15).png" style="width: 500px; height: auto;" alt="결제상세15"> -->
+---
 
-<img src="p1 (15).png" style="width: 500px; height: auto;" alt="결제상세15">
-
-=======
-## 엔드포인트 상세
-
-`POST` /api/v1/payment  
-// 주문완료라 잘모르겠습니다.
-
+### **주문 완료 상세 정보 조회 (GET)**
+**엔드포인트:** `GET /api/v1/orders/success/{orderId}`
 
 #### **Request Parameters**
-
 | Name | Type | Required | Description |
 | :--- | :--- | :---: | :--- |
-| 주문번호 | String | - | - |
-| 결제금액 | String | - | "%,d원" |
-| 결제수단 | String | - | - |
-| 배송지 | String | - | - |
-| 받는사람 | Integer | - | - |
-| 주소 | Integer | - | - |
-| phone | Integer | - | |
-| email | String | - | - |
-| message | Integer | - | - |
-| productImageUrl | String | - | - |
-| productName | String | - | - |
-| option | Integer | - | 상품갯수 |
-| price | Integer | - | - |
-| productImageUrl | String | - |  |
-| productName | String | - |  |
-| option | String | - |  |
-| price | Integer | - |  |
-| 배송비 | Integer | - |  |
-| 결제금액 | String | - | - |
-| 회원 적립금 | Integer | - | - |
-| 적립 예정금액 | Integer | - |  |
+| **orderId** | String | Y | 방금 생성이 완료된 주문 번호 (예: "20260331-0000194") |
 
 #### **Request Body**
 ```json
 {
-
 }
 ```
 
-
-#### **Success Response**
-
-  * **Code:** 200 OK
-  * **Content:**
-
-<!-- end list -->
+#### **Success Response (JSON)**
 
 ```json
 {
   "status": "success",
   "data": {
-    "주문번호" : ,
-    "결제금액" : "",
-    "결제수단" : "",
-    "받는사람" : ,
-    "주소" : ,
-    "phone" : "",
-    "email" : "",
-    "message" : ,
-    "productImageUrl" : ,
-    "productName" : ,
-    "option" : ,
-    "price" : ,
-    "주문상품" : ,
-    "배송비" : ,
-    "결제금액" : ,
-    "적립금" : ,
-    "적립 예정금액" : 
+    "orderSummary": {
+      "message": "고객님의 주문이 정상적으로 완료되었습니다.",
+      "orderNumber": "20260331-0000194",
+      "totalPaymentAmount": 23500
+    },
+    "paymentMethodInfo": {
+      "methodTitle": "결제수단",
+      "selectedMethod": "토스페이 간편결제"
+    },
+    "deliveryInfo": {
+      "receiverName": "전인렬",
+      "receiverEmail": "dlsfuf222@gmail.com",
+      "fullAddress": "46915 부산 사상구 운산로 25 동양환신아파트 102동 408호",
+      "phoneNumber": "010-5910-6393",
+      "deliveryRequest": "부재 시 문 앞에 놓아주세요."
+    }
   }
 }
 ```
 
-#### **Error Response**
+---
 
-  * **Code:** 404 NOT FOUND
-  * **Content:** `{ "message": "User not found" }`
-  * **Code:** 401 UNAUTHORIZED
-  * **Content:** `{ "message": "Invalid token" }`
+### **참고사항**
 
-#### 참고사항
+---
+
+<!-- <img src="payment_details/p1 (15).png" style="width: 500px; height: auto;" alt="결제상세15"> -->
+
+<img src="p1 (15).png" style="width: 500px; height: auto;" alt="결제상세15">
+
+---
+
+### **주문/결제 상세 정보 조회 (GET)**
+**엔드포인트:** `GET /api/v1/orders/checkout`
+
+#### **Request Parameters**
+
+| Name | Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| **userId** | Long | Y | 로그인한 사용자의 고유 번호 |
+| **cartItemIds** | String | Y | 주문할 장바구니 아이템 ID 목록 (예: "105,106") |
+
+#### **Request Body**
+```json
+{
+}
+```
+
+#### **Success Response (JSON)**
+
+```json
+{
+  "status": "success",
+  "data": {
+    "pageTitle": "주문/결제",
+    "orderItems": [
+      {
+        "productName": "어글어글 강원도 대관령 무염 황태채 40g",
+        "quantity": 1,
+        "price": 12000,
+        "imageUrl": "https://swiffy.com/items/fish_snack.png"
+      },
+      {
+        "productName": "어글어글 우유껌 50g 7종",
+        "optionName": "제주 당근 우유껌 50g",
+        "quantity": 1,
+        "price": 6500,
+        "imageUrl": "https://swiffy.com/items/milk_gum.png"
+      }
+    ],
+    "paymentSummary": {
+      "totalProductPrice": 18500,
+      "shippingFee": 5000,
+      "totalDiscount": 0,
+      "finalPaymentAmount": 23500
+    }
+  }
+}
+```
+
+---
+
+### **참고사항**
+* **orderItems**: 사진 왼쪽 빨간 박스의 상품 2종 정보를 담고 있습니다.
+* **paymentSummary**: 사진 오른쪽 빨간 박스의 **배송비 5,000원**과 **최종 결제 금액 23,500원**을 계산해서 보여줍니다.
 
 -----
 
