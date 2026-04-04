@@ -92,11 +92,6 @@ Request Parameters
 
 <img src="p1 (7).png" style="width: 500px; height: auto;" alt="결제상세7">
 
-
-<!-- <img src="payment_details/p1 (8).png" style="width: 500px; height: auto;" alt="결제상세8"> -->
-
-<img src="p1 (8).png" style="width: 500px; height: auto;" alt="결제상세8">
-
 ## 엔드포인트 상세
 **GET** `/api/v1/delivery/messages`
 
@@ -123,6 +118,11 @@ Request Parameters
 
 ---
 
+<!-- <img src="payment_details/p1 (8).png" style="width: 500px; height: auto;" alt="결제상세8"> -->
+
+<img src="p1 (8).png" style="width: 500px; height: auto;" alt="결제상세8">
+
+
 ## 엔드포인트 상세
 **PUT** `/api/v1/orders/checkout/delivery`
 
@@ -138,12 +138,12 @@ Request Parameters
 
 ```json
 {
-  "receiverName": "최서령",
+  "receiverName": "전인렬",
   "zipCode": "46915",
   "baseAddress": "부산 사상구 운산로 25 덕양환신아파트",
   "detailAddress": "나머지 주소 입력분", 
-  "phoneNumber": "010-2059-5477",
-  "email": "gjtjfud@naver.com",
+  "phoneNumber": "010-5910-6393",
+  "email": "dlsfuf222@gmail.com",
   "deliveryMessage": "부재 시 문 앞에 놓아주세요.",
   "isDefaultAddress": true
 }
@@ -159,7 +159,7 @@ Request Parameters
   "status": "success",
   "message": "배송지 정보가 성공적으로 반영되었습니다.",
   "data": {
-    "receiverName": "최서령",
+    "receiverName": "전인렬",
     "fullAddress": "(46915) 부산 사상구 운산로 25 덕양환신아파트 나머지 주소 입력분",
     "deliveryMessage": "부재 시 문 앞에 놓아주세요."
   }
@@ -176,9 +176,6 @@ Request Parameters
 ---
 
 #### **참고사항**
-* **배송지 선택**: '회원 정보와 동일' 또는 '새로운 배송지' 선택에 따라 `Request Body`의 값이 달라집니다. 사진에서는 '최서령'이라는 이름이 입력되어 있으므로 해당 값이 전달됩니다.
-* **나머지 주소**: 사진 중앙의 빨간 박스인 **'나머지 주소(선택 입력 기능)'** 필드는 `detailAddress`에 매핑됩니다.
-* **배송 메시지**: 하단 드롭다운에서 선택한 **"부재 시 문 앞에 놓아주세요."**라는 문구가 `deliveryMessage`로 전달됩니다. 만약 '직접 입력'을 선택하면 사용자가 타이핑한 내용이 전송됩니다.
 
 ---
 
