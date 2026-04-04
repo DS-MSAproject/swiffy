@@ -233,7 +233,7 @@
 ---
 
 ## 엔드포인트 상세
-**PUT** `/api/v1/cart/items/{cartItemId}/select`
+**PUT** `/api/v1/cart/{cartItemId}/select`
 
 ---
 
