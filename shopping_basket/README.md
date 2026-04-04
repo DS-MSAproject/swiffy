@@ -126,6 +126,63 @@
 ---
 
 <img src="4.png" style="width: 500px; height: auto;" alt="설명">
+
+---
+
+## 엔드포인트 상세
+**GET** `/api/v1/cart/summary`
+
+---
+
+#### **Request Parameters**
+
+| Name | Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| userId | Long | Y | 장바구니 요약 정보를 조회할 사용자 ID |
+
+#### **Request Body**
+```json
+{
+  "cartId": ""
+}
+```
+
+#### **Success Response**
+
+  * **Code:** 200 OK
+  * **Content:**
+
+```json
+{
+  "status": "success",
+  "data": {
+    "totalProductPrice": 13000,
+    "totalShippingFee": 5000,
+    "estimatedPaymentAmount": 18000,
+    "estimatedRewardPoints": 130,
+    "memberRewardPoints": 130,
+    "buttons": {
+      "selectAll": "/api/v1/cart/select-all",
+      "deleteSelected": "/api/v1/cart/items/delete",
+      "moveToOverseasCart": "/api/v1/cart/overseas",
+      "orderSelected": "/api/v1/orders/selected",
+      "orderAll": "/api/v1/orders/all"
+    }
+  }
+}
+```
+
+#### **Error Response**
+
+  * **Code:** 404 NOT FOUND
+  * **Content:** `{ "message": "User not found" }`
+  * **Code:** 401 UNAUTHORIZED
+  * **Content:** `{ "message": "Invalid token" }`
+
+#### **참고사항**
+
+---
+
 <img src="all_select.png" style="width: 500px; height: auto;" alt="설명">
 <img src="all_select2.png" style="width: 500px; height: auto;" alt="설명">
 <img src="delete_select1.png" style="width: 500px; height: auto;" alt="설명">
