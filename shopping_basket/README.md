@@ -108,9 +108,7 @@
       "wishlistUrl": "/api/wishlist/2",
       "orderUrl": "/api/order/2"
     }
-  ],
-  "totalOrderPrice": 19500,
-  "totalShippingFee": 0
+  ]
 }
 ```
 
@@ -166,7 +164,6 @@
     "moveToOverseasCart": "/api/v1/cart/overseas",
     "orderSelected": "/api/v1/orders/selected",
     "orderAll": "/api/v1/orders/all"
-    }
   }
 }
 ```
