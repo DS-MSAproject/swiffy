@@ -4,6 +4,8 @@
 
 ---
 
+Request Parameters
+
 | Name | Type | Required | Description |
 | :--- | :--- | :---: | :--- |
 | **userId** | Long | Y | 현재 로그인한 사용자의 고유 번호 |
