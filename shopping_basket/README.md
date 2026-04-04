@@ -161,12 +161,11 @@
     "estimatedPaymentAmount": 18000,
     "estimatedRewardPoints": 130,
     "memberRewardPoints": 130,
-    "buttons": {
-      "selectAll": "/api/v1/cart/select-all",
-      "deleteSelected": "/api/v1/cart/items/delete",
-      "moveToOverseasCart": "/api/v1/cart/overseas",
-      "orderSelected": "/api/v1/orders/selected",
-      "orderAll": "/api/v1/orders/all"
+    "selectAll": "/api/v1/cart/select-all",
+    "deleteSelected": "/api/v1/cart/items/delete",
+    "moveToOverseasCart": "/api/v1/cart/overseas",
+    "orderSelected": "/api/v1/orders/selected",
+    "orderAll": "/api/v1/orders/all"
     }
   }
 }
