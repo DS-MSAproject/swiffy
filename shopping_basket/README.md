@@ -210,7 +210,7 @@
 {
   "status": "success",
   "data": {
-    "SelectedAll": true,
+    "isSelectedAll": true,
   }
 }
 ```
@@ -229,6 +229,56 @@
 
 
 <img src="all_select2.png" style="width: 500px; height: auto;" alt="설명">
+
+---
+
+## 엔드포인트 상세
+**PUT** `/api/v1/cart/items/{cartItemId}/select`
+
+---
+
+#### **Request Parameters**
+
+| Name | Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| cartItemId | Long | Y | 선택 상태를 변경할 장바구니 아이템의 고유 번호 |
+
+#### **Request Body**
+```json
+{
+  "isSelected": true
+}
+```
+
+#### **Success Response**
+
+  * **Code:** 200 OK
+  * **Content:**
+
+```json
+{
+  "status": "success",
+  "data": {
+    "cartItemId": 2,
+    "isSelected": true,
+    "selectedItemCount": 1
+  }
+}
+```
+
+#### **Error Response**
+
+  * **Code:** 404 NOT FOUND
+  * **Content:** `{ "message": "Item not found" }`
+  * **Code:** 401 UNAUTHORIZED
+  * **Content:** `{ "message": "Invalid token" }`
+
+#### **참고사항**
+* `productId` 대신 장바구니 고유 번호인 `cartItemId`를 사용하여 특정 행(Row)의 선택 상태를 명확히 지정했습니다.
+
+---
+
+
 <img src="delete_select1.png" style="width: 500px; height: auto;" alt="설명">
 <img src="delete_select2.png" style="width: 500px; height: auto;" alt="설명">
 
