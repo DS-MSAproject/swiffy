@@ -8,56 +8,54 @@
 <img src="1.png" style="width: 500px; height: auto;" alt="설명">
 <img src="2.png" style="width: 500px; height: auto;" alt="설명">
 
-=======
+보내주신 두 번째 사진의 **장바구니 담기 팝업** 화면을 기준으로, 작성하신 틀을 더 전문적인 API 문서 형식으로 다듬어 보았습니다. 
+
+특히 **Request Body**는 클라이언트가 서버로 '전송'하는 데이터(어떤 상품을 담을지)로 구성하고, **Success Response**는 사진 속 UI를 그리기 위해 필요한 '응답' 데이터로 매칭하여 수정했습니다.
+
+---
 
 #### **Request Parameters**
 
 | Name | Type | Required | Description |
 | :--- | :--- | :---: | :--- |
-|  |  | - | - |
+| productId | Long | Y | 상품 고유 번호 |
 
 #### **Request Body**
 ```json
 {
-  "구매하기" :
-  "장바구니 이동" :
-  "쇼핑계속하기" :
+  "productId": 202,
+  "optionName": "제주 당근 우유 껌 50g",
+  "count": 1
 }
 ```
 
-
 #### **Success Response**
 
-  * **Code:** 200 OK
-  * **Content:**
-
-<!-- end list -->
+* **Code:** 200 OK
+* **Content:**
 
 ```json
 {
   "status": "success",
   "data": {
-    "imageUrl" : ""
-    "productName" : ""
-    "price" :
-    "option" :
-    "구매하기Url" :
-    "장바구니Url" :
-    "쇼핑계속하기Url" :
+    "imageUrl": "https://swiffy.com/items/milk_gum_carrot.png",
+    "productName": "어글어글 우유껌 50g 7종",
+    "option": "제주 당근 우유 껌 50g",
+    "buyUrl": "/order/checkout",
+    "cartUrl": "/order/cart",
+    "continueShoppingUrl": "/products/list"
   }
 }
 ```
 
 #### **Error Response**
 
-  * **Code:** 404 NOT FOUND
-  * **Content:** `{ "message": "User not found" }`
-  * **Code:** 401 UNAUTHORIZED
-  * **Content:** `{ "message": "Invalid token" }`
+* **Code:** 404 NOT FOUND
+* **Content:** `{ "message": "Product not found" }`
+* **Code:** 401 UNAUTHORIZED
+* **Content:** `{ "message": "Invalid token" }`
 
-#### 참고사항
-
------
+#### **참고사항**
 
 <img src="3.png" style="width: 500px; height: auto;" alt="설명">
 
