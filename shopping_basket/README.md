@@ -59,44 +59,78 @@
 
 <img src="3.png" style="width: 500px; height: auto;" alt="설명">
 
-=======
+그 부분들은 지금 보고 계신 **장바구니 조회(GET)** API가 아니라, 각각 **별도의 API(엔드포인트)**로 분리해서 설계하는 게 보통이에요!
+
+사진 속의 버튼들은 각각 고유한 기능을 수행하기 때문에, 하나의 API 문서에 다 담기보다는 아래처럼 각각의 문서를 따로 만드는 것이 정석입니다.
+
+---
+
+### **분리해야 하는 이유**
+* **삭제**: 특정 상품을 지우는 기능 (**DELETE** `/api/cart/{cartId}`)
+* **관심상품**: 찜 목록으로 옮기는 기능 (**POST** `/api/wishlist`)
+* **옵션변경**: 기존 데이터를 수정하는 기능 (**PATCH** `/api/cart/{cartId}`)
+* **주문하기**: 주문서 페이지로 넘어가는 기능 (**POST** `/api/order`)
+
+---
+
+만약 지금 작성 중인 문서가 **"장바구니 화면을 그리기 위한 데이터 조회"** 목적이라면, 아래처럼 **엔드포인트 상세**와 **Success Response**에 버튼들이 연결될 **URL**이나 **상태값**만 포함시켜 주면 됩니다. 
+
+수정된 최종 버전입니다!
 
 ## 엔드포인트 상세
+**GET** `/api/v1/cart`
+
+---
 
 #### **Request Parameters**
 
 | Name | Type | Required | Description |
 | :--- | :--- | :---: | :--- |
-|  |  | - | - |
+| userId | Long | Y | 장바구니를 조회할 사용자 ID |
 
 #### **Request Body**
 ```json
 {
-  "option" :
-  "옵션변경" :
-  "삭제" :
-  "wishlist" :
-  "주문하기" :
+  "cartId": ""
 }
 ```
-
 
 #### **Success Response**
 
   * **Code:** 200 OK
   * **Content:**
 
-<!-- end list -->
-
 ```json
 {
   "status": "success",
-  "data": {
-    "imageUrl" : ""
-    "productName" : ""
-    "price" :
-    "discountPrice" :
-  }
+  "data": [
+    {
+      "cartItemId": 1,
+      "productName": "어글어글 우유껌 50g 7종",
+      "option": "제주 브로콜리 우유껌 50g",
+      "price": 13000,
+      "discountPrice": 0,
+      "count": 2,
+      "imageUrl": "https://swiffy.com/items/broccoli_gum.png",
+      "deleteUrl": "/api/cart/1",
+      "wishlistUrl": "/api/wishlist/1",
+      "orderUrl": "/api/order/1"
+    },
+    {
+      "cartItemId": 2,
+      "productName": "어글어글 우유껌 50g 7종",
+      "option": null,
+      "price": 6500,
+      "discountPrice": 0,
+      "count": 1,
+      "imageUrl": "https://swiffy.com/items/original_gum.png",
+      "deleteUrl": "/api/cart/2",
+      "wishlistUrl": "/api/wishlist/2",
+      "orderUrl": "/api/order/2"
+    }
+  ],
+  "totalOrderPrice": 19500,
+  "totalShippingFee": 0
 }
 ```
 
@@ -107,9 +141,9 @@
   * **Code:** 401 UNAUTHORIZED
   * **Content:** `{ "message": "Invalid token" }`
 
-#### 참고사항
+#### **참고사항**
 
------
+---
 
 <img src="4.png" style="width: 500px; height: auto;" alt="설명">
 <img src="all_select.png" style="width: 500px; height: auto;" alt="설명">
