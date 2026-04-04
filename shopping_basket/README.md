@@ -183,6 +183,54 @@
 ---
 
 <img src="all_select.png" style="width: 500px; height: auto;" alt="설명">
+
+---
+
+## 엔드포인트 상세
+**PUT** `/api/v1/cart/select-all`
+
+---
+
+#### **Request Parameters**
+
+| Name | Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| userId | Long | Y | 전체 선택을 적용할 사용자 ID |
+
+#### **Request Body**
+```json
+{
+  "isSelectedAll": true
+}
+```
+
+#### **Success Response**
+
+  * **Code:** 200 OK
+  * **Content:**
+
+```json
+{
+  "status": "success",
+  "data": {
+    "SelectedAll": true,
+  }
+}
+```
+
+#### **Error Response**
+
+  * **Code:** 404 NOT FOUND
+  * **Content:** `{ "message": "User not found" }`
+  * **Code:** 401 UNAUTHORIZED
+  * **Content:** `{ "message": "Invalid token" }`
+
+#### **참고사항**
+
+---
+
+
+
 <img src="all_select2.png" style="width: 500px; height: auto;" alt="설명">
 <img src="delete_select1.png" style="width: 500px; height: auto;" alt="설명">
 <img src="delete_select2.png" style="width: 500px; height: auto;" alt="설명">
