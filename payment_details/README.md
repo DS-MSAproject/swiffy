@@ -8,11 +8,8 @@ Request Parameters
 
 | Name | Type | Required | Description |
 | :--- | :--- | :---: | :--- |
-| **userId** | Long | Y | 현재 로그인한 사용자의 고유 번호 |
 | **cartItemIds** | String | Y | 장바구니에서 선택해서 넘어온 아이템 ID들 (예: "101,102") |
 | **orderId** | String | N | (이미 생성된 주문이 있다면) 해당 주문의 고유 번호 |
-| **userId** | Long | Y | 수정 주체인 사용자의 고유 번호 |
-| **userId** | Long | Y | 해당 사용자의 장바구니 담긴 개수를 조회하기 위함 |
 
 * **Request Body**:
 ```json
@@ -147,7 +144,7 @@ Request Parameters
 
 | Name | Type | Required | Description |
 | :--- | :--- | :---: | :--- |
-| userId | Long | Y | 주문을 진행 중인 사용자 ID |
+| - | - | - | - |
 
 #### **Request Body (JSON)**
 
@@ -206,7 +203,6 @@ Request Parameters
 
 | Name | Type | Required | Description |
 | :--- | :--- | :---: | :--- |
-| **userId** | Long | Y | 로그인한 사용자의 고유 번호 |
 | **cartItemIds** | String | Y | 주문할 장바구니 아이템 ID 목록 (예: "105,106") |
 
 #### **Request Body**
@@ -264,7 +260,7 @@ Request Parameters
 #### **Request Parameters**
 | Name | Type | Required | Description |
 | :--- | :--- | :---: | :--- |
-| **userId** | Long | Y | 사용자 고유 ID |
+| - | - | Y | - |
 
 #### **Request Body (JSON)**
 
@@ -381,7 +377,6 @@ Request Parameters
 
 | Name | Type | Required | Description |
 | :--- | :--- | :---: | :--- |
-| **userId** | Long | Y | 로그인한 사용자의 고유 번호 |
 | **cartItemIds** | String | Y | 주문할 장바구니 아이템 ID 목록 (예: "105,106") |
 
 #### **Request Body**
