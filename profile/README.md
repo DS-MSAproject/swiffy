@@ -1,6 +1,6 @@
 ### 1. API 개요
-* **Base URL:** https://api.example.com/api/v1
-* **Authentication:** Bearer Token (Header: ```Authorization: Bearer {YOUR_TOKEN}```)
+* **Base URL:** `https://api.example.com/api/v1`
+* **Authentication:** Bearer Token (Header: `Authorization: Bearer {YOUR_TOKEN}`)
 
 <img src="1.png" style="width: 500px; height: auto;" alt="설명">
 <img src="2.png" style="width: 500px; height: auto;" alt="설명">
@@ -8,7 +8,7 @@
 ## 프로필
 
 ### 엔드포인트 상세
-```GET /profile```
+`GET /users/profile`
 
 #### **Request Headers**
 | Name | Value / Type | Required | Description |
@@ -17,6 +17,9 @@
 | `Accept` | `application/json` | ✅ | 응답받을 데이터 형식 지정 |
 
 #### **Request Parameters**
+| Name | Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| `id` | `Integer` | ✅ | 사용자의 고유 ID (Path Variable) |
 
 #### **Request Body**
 
@@ -61,6 +64,134 @@
       "post_count": 0,
       "regular_delivery_count": 0
     }
+  }
+}
+```
+-----------------------------------------------------------------
+<img src="4.png" style="width: 500px; height: auto;" alt="설명">
+
+## 회원정보 수정(삭제 고려)
+
+### 엔드포인트 상세
+```PUT /users/profile```
+
+#### **Request Parameters**
+
+#### **Request Headers**
+| Name | Value / Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| `Authorization` | `Bearer {token}` | ✅ | 본인 확인을 위한 인증 토큰 |
+| `Content-Type` | `application/json` | ✅ | 요청 본문의 데이터 형식 |
+
+#### **Request Body (JSON)**
+| Name | Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| `name` | `String` | ✅ | 변경할 실명 |
+| `phone_number` | `String` | ✅ | 휴대전화 번호 (010-0000-0000) |
+| `status` | `String` | ✅ | 이메일 주소 (형식 검증 필요) |
+| `page` | `Object` | ❌ | 주소 정보 (입력 시에만 업데이트) |
+| `marketing_consent` | `Object` | ✅ | 수신 동의 여부 (SMS, Email) |
+
+#### **Request Body Example**
+```json
+{
+  "name": "김선국",
+  "phone_number": "010-1234-5678",
+  "email": "seonguk@example.com",
+  "address": {
+    "zip_code": "48058",
+    "base_address": "부산광역시 해운대구 우동",
+    "detail_address": "센텀중앙로 123"
+  },
+  "marketing_consent": {
+    "sms_allowed": true,
+    "email_allowed": false
+  }
+}
+```
+#### Success Response
+* **Code:** `200 OK`
+* **Content:**
+```json
+{
+  "status": "success",
+  "message": "회원 정보가 성공적으로 수정되었습니다.",
+  "data": {
+    "updated_at": "2026-04-03T17:15:00Z"
+  }
+}
+
+```
+## 회원정보 수정(Response 확장된 내용)
+
+### 엔드포인트 상세
+```PUT /users/profile``` : 사용자의 비밀번호 변경, 연락처, 주소 및 마케팅 수신 여부를 업데이트합니다.
+
+#### **Request Parameters**
+
+#### **Request Headers**
+| Name | Value / Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| `Authorization` | `Bearer {token}` | ✅ | 본인 확인을 위한 인증 토큰 |
+| `Content-Type` | `application/json` | ✅ | 요청 본문의 데이터 형식 |
+
+#### **Request Body (JSON)**
+| Name | Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| `current_password` | `String` | ✅ | 정보 수정을 위한 현재 비밀번호 확인 |
+| `new_password` | `String` | ❌ | 변경할 새 비밀번호 (변경 시에만 입력) |
+| `confirm_password` | `String` | ❌ | 새 비밀번호 확인 (프론트/백엔드 교차 검증) |
+| `phone_number` | `String` | ✅ | 휴대전화 번호 |
+| `email` | `String` | ✅ | 이메일 주소 |
+| `address` | `Object` | ❌ | 주소 정보 (최초 등록 또는 변경 시) |
+| `marketing_consent` | `Boolean` | ✅ | 수신여부 (true: 수신함 / false: 수신안함) |
+
+#### **Success Response**
+* **Code:** `200 OK`
+* **Content:** 수정 후 최신화된 정보를 반환합니다.
+```json
+{
+  "status": "success",
+  "data": {
+    "user_id": "seonguk95",
+    "name": "김선국",
+    "email": "seonguk@example.com",
+    "phone_number": "010-1234-5678",
+    "address": {
+      "zip_code": "48058",
+      "base_address": "부산광역시 해운대구 우동",
+      "detail_address": "센텀중앙로 123",
+      "is_first_registration": false
+    },
+    "marketing_consent": true,
+    "updated_at": "2026-04-04T15:30:00Z"
+  }
+}
+```
+------------------------------------------
+### 회원 탈퇴 처리
+```DELETE /users``` : 서비스 이용을 종료하고 회원 탈퇴를 처리합니다.
+
+#### **Request Headers**
+| Name | Value / Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| `Authorization` | `Bearer {token}` | ✅ | 본인 확인을 위한 인증 토큰 |
+
+#### **Request Body (JSON)**
+| Name | Type | Required | Description |
+| :--- | :--- | :---: | :--- |
+| `password` | `String` | ✅ | 탈퇴 확정을 위한 비밀번호 재확인 |
+| `reason` | `String` | ❌ | 탈퇴 사유 (서비스 개선 목적) |
+
+#### **Success Response**
+* **Code:** `200 OK`
+* **Content:**
+```json
+{
+  "status": "success",
+  "message": "회원 탈퇴가 완료되었습니다. 그동안 이용해 주셔서 감사합니다.",
+  "data": {
+    "withdrawal_date": "2026-04-04T15:40:00Z"
   }
 }
 ```
@@ -205,8 +336,10 @@
 <img src="3_1.png" style="width: 500px; height: auto;" alt="설명">
 
 ## 취소/교환반품 내역
+
 ### 엔드포인트 상세
-```GET /orders/{order_number}/cs-history```
+```GET /orders/{order_number}/cs-history``` : 해당 주문에서 발생한 취소, 교환, 반품에 대한 상세 이력과 진행 상태를 조회합니다.
+
 #### **Request Headers**
 | Name | Value / Type | Required | Description |
 | :--- | :--- | :---: | :--- |
@@ -276,139 +409,13 @@ Res(해야됨)
 기간 (오늘 / 1개월 / 3개월 / 6개월 )
 상세날짜 정보
 ```
------------------------------------------------------------------------
-<img src="4.png" style="width: 500px; height: auto;" alt="설명">
-
-### 엔드포인트 상세
-```PUT /profile```
-
-#### **Request Parameters**
-
-#### **Request Headers**
-| Name | Value / Type | Required | Description |
-| :--- | :--- | :---: | :--- |
-| `Authorization` | `Bearer {token}` | ✅ | 본인 확인을 위한 인증 토큰 |
-| `Content-Type` | `application/json` | ✅ | 요청 본문의 데이터 형식 |
-
-#### **Request Body (JSON)**
-| Name | Type | Required | Description |
-| :--- | :--- | :---: | :--- |
-| `name` | `String` | ✅ | 변경할 실명 |
-| `phone_number` | `String` | ✅ | 휴대전화 번호 (010-0000-0000) |
-| `status` | `String` | ✅ | 이메일 주소 (형식 검증 필요) |
-| `page` | `Object` | ❌ | 주소 정보 (입력 시에만 업데이트) |
-| `marketing_consent` | `Object` | ✅ | 수신 동의 여부 (SMS, Email) |
-
-#### **Request Body Example**
-```json
-{
-  "name": "김선국",
-  "phone_number": "010-1234-5678",
-  "email": "seonguk@example.com",
-  "address": {
-    "zip_code": "48058",
-    "base_address": "부산광역시 해운대구 우동",
-    "detail_address": "센텀중앙로 123"
-  },
-  "marketing_consent": {
-    "sms_allowed": true,
-    "email_allowed": false
-  }
-}
-```
-#### Success Response
-* **Code:** `200 OK`
-* **Content:**
-```json
-{
-  "status": "success",
-  "message": "회원 정보가 성공적으로 수정되었습니다.",
-  "data": {
-    "updated_at": "2026-04-03T17:15:00Z"
-  }
-}
-
-```
-## 회원정보 수정
-
-### 엔드포인트 상세
-```PUT /users/profile```
-
-#### **Request Parameters**
-
-#### **Request Headers**
-| Name | Value / Type | Required | Description |
-| :--- | :--- | :---: | :--- |
-| `Authorization` | `Bearer {token}` | ✅ | 본인 확인을 위한 인증 토큰 |
-| `Content-Type` | `application/json` | ✅ | 요청 본문의 데이터 형식 |
-
-#### **Request Body (JSON)**
-| Name | Type | Required | Description |
-| :--- | :--- | :---: | :--- |
-| `current_password` | `String` | ✅ | 정보 수정을 위한 현재 비밀번호 확인 |
-| `new_password` | `String` | ❌ | 변경할 새 비밀번호 (변경 시에만 입력) |
-| `confirm_password` | `String` | ❌ | 새 비밀번호 확인 (프론트/백엔드 교차 검증) |
-| `phone_number` | `String` | ✅ | 휴대전화 번호 |
-| `email` | `String` | ✅ | 이메일 주소 |
-| `address` | `Object` | ❌ | 주소 정보 (최초 등록 또는 변경 시) |
-| `marketing_consent` | `Boolean` | ✅ | 수신여부 (true: 수신함 / false: 수신안함) |
-
-#### **Success Response**
-* **Code:** `200 OK`
-* **Content:** 수정 후 최신화된 정보를 반환합니다.
-```json
-{
-  "status": "success",
-  "data": {
-    "user_id": "seonguk95",
-    "name": "김선국",
-    "email": "seonguk@example.com",
-    "phone_number": "010-1234-5678",
-    "address": {
-      "zip_code": "48058",
-      "base_address": "부산광역시 해운대구 우동",
-      "detail_address": "센텀중앙로 123",
-      "is_first_registration": false
-    },
-    "marketing_consent": true,
-    "updated_at": "2026-04-04T15:30:00Z"
-  }
-}
-```
-------------------------------------------
-### 회원 탈퇴 처리
-```DELETE /users```
-
-#### **Request Headers**
-| Name | Value / Type | Required | Description |
-| :--- | :--- | :---: | :--- |
-| `Authorization` | `Bearer {token}` | ✅ | 본인 확인을 위한 인증 토큰 |
-
-#### **Request Body (JSON)**
-| Name | Type | Required | Description |
-| :--- | :--- | :---: | :--- |
-| `password` | `String` | ✅ | 탈퇴 확정을 위한 비밀번호 재확인 |
-| `reason` | `String` | ❌ | 탈퇴 사유 (서비스 개선 목적) |
-
-#### **Success Response**
-* **Code:** `200 OK`
-* **Content:**
-```json
-{
-  "status": "success",
-  "message": "회원 탈퇴가 완료되었습니다. 그동안 이용해 주셔서 감사합니다.",
-  "data": {
-    "withdrawal_date": "2026-04-04T15:40:00Z"
-  }
-}
-```
 ----------------------------------------------------------------------------
 <img src="5.png" style="width: 500px; height: auto;" alt="설명">
 
 ## 관심상품리스트
 
 ### 엔드포인트 상세
-```GET /users/wishlist```
+```GET /users/wishlist``` : 사용자가 '좋아요' 또는 '찜'한 관심 상품 리스트를 조회합니다.
 
 #### **Request Headers**
 | Name | Value / Type | Required | Description |
