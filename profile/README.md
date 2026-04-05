@@ -19,7 +19,7 @@
 #### **Request Parameters**
 | Name | Type | Required | Description |
 | :--- | :--- | :---: | :--- |
-| `id` | `Integer` | ✅ | 사용자의 고유 ID (Path Variable) |
+| - | - | - | - |
 
 #### **Request Body**
 
@@ -426,7 +426,6 @@ Res(해야됨)
 #### **Request Parameters**
 | Name | Type | Required | Description |
 | :--- | :--- | :---: | :--- |
-| `id` | `Integer` | ✅ | 사용자의 고유 ID (Path Variable) |
 | `page` | `Integer` | ❌ | 조회할 페이지 번호 (기본값: 1) |
 | `limit` | `Integer` | ❌ | 한 페이지에 보여줄 상품 개수 (기본값: 20) |
 
@@ -556,7 +555,6 @@ Res(해야됨)
 #### **Request Parameters**
 | Name | Type | Required | Description |
 | :--- | :--- | :---: | :--- |
-| `id` | `Integer` | ✅ | 사용자의 고유 ID (Path Variable) |
 | `page` | `Integer` | ❌ | 내역 조회를 위한 페이지 번호 (기본값: 1) |
 
 #### **Success Response**
@@ -618,7 +616,6 @@ Res(해야됨)
 #### **Request Parameters**
 | Name | Type | Required | Description |
 | :--- | :--- | :---: | :--- |
-| `id` | `Integer` | ✅ | 사용자의 고유 ID (Path Variable) |
 | `page` | `Integer` | ❌ | 조회할 페이지 번호 (기본값: 1) |
 | `limit` | `Integer` | ❌ | 페이지 당 항목 수 (기본값: 10) |
 | `filter` | `String` | ❌ | 필터링 (ALL, EARNED, USED) |
@@ -682,7 +679,6 @@ Res(해야됨)
 #### **Request Parameters**
 | Name | Type | Required | Description |
 | :--- | :--- | :---: | :--- |
-| `id` | `Integer` | ✅ | 사용자의 고유 ID (Path Variable) |
 | `page` | `Integer` | ❌ | 조회할 페이지 번호 (기본값: 1) |
 | `status` | `String` | ❌ | 쿠폰 상태 필터 (AVAILABLE, USED, EXPIRED) |
 
@@ -744,7 +740,6 @@ Res(해야됨)
 #### **Request Parameters**
 | Name | Type | Required | Description |
 | :--- | :--- | :---: | :--- |
-| `id` | `Integer` | ✅ | 사용자의 고유 ID (Path Variable) |
 | `page` | `Integer` | ❌ | 조회할 페이지 번호 (기본값: 1) |
 
 #### **Success Response**
@@ -918,7 +913,6 @@ Res(해야됨)
 #### **Request Parameters**
 | Name | Type | Required | Description |
 | :--- | :--- | :---: | :--- |
-| `id` | `Integer` | ✅ | 사용자의 고유 ID (Path Variable) |
 | `limit` | `Integer` | ❌ | 가져올 최근 배송지 개수 (기본값: 3) |
 
 #### **Success Response**
