@@ -66,7 +66,7 @@
 
 | Name | Type | Required | Description |
 | :--- | :--- | :---: | :--- |
-| userId | Long | Y | 장바구니를 조회할 사용자 ID |
+| - | - | - | - |
 
 #### **Request Body**
 ```json
@@ -136,7 +136,7 @@
 
 | Name | Type | Required | Description |
 | :--- | :--- | :---: | :--- |
-| userId | Long | Y | 장바구니 요약 정보를 조회할 사용자 ID |
+| - | - | - | - |
 
 #### **Request Body**
 ```json
@@ -192,7 +192,7 @@
 
 | Name | Type | Required | Description |
 | :--- | :--- | :---: | :--- |
-| userId | Long | Y | 전체 선택을 적용할 사용자 ID |
+| - | - | - | - |
 
 #### **Request Body**
 ```json
@@ -293,7 +293,7 @@
 
 | Name | Type | Required | Description |
 | :--- | :--- | :---: | :--- |
-| userId | Long | Y | 삭제를 수행할 사용자 ID |
+| - | - | - | - |
 
 #### **Request Body**
 ```json
@@ -491,7 +491,7 @@ API 설계 관점에서 보면, 이 화면은 **"이 상품이 가질 수 있는
 
 | Name | Type | Required | Description |
 | :--- | :--- | :---: | :--- |
-| userId | Long | Y | 관심상품을 등록할 사용자 ID |
+| - | - | - | - |
 
 #### **Request Body**
 ```json
