@@ -201,7 +201,7 @@
     "productUrl : "",
     "price" : ,
     "tagName" : "",
-    "hashtagName
+    "hashtagName : ""
   "
   }
 }
@@ -306,9 +306,7 @@ RequestBody
       "reviewUrl" : "",
       "userName" : "",
       "productOption" : "",
-      "reviewCreatAt" : "",
-      "likeCount" : "",
-      "reportUrl" : ""
+      "reviewCreatAt" : ""
 }
 ```
 
