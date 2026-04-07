@@ -230,7 +230,7 @@
     "current_page": 1,
     "orders": [
       {
-        "order_number": "20260403-0000123",
+        "order_id": "20260403-0000123",
         "order_date": "2026-04-03T14:20:00Z",
         "order_status": "SHIPPING",
         "order_status_text": "배송중",
@@ -266,7 +266,7 @@
 ## 상세보기
 
 ### 엔드포인트 상세
-```GET /orders{order_number}```
+```GET /orders{order_id}```
  
 #### **Request Headers**
 | Name | Value / Type | Required | Description |
@@ -289,7 +289,7 @@
   "status": "success",
   "data": {
     "order_info": {
-      "order_number": "20260403-0000123",
+      "order_id": "20260403-0000123",
       "order_date": "2026-04-03T14:20:00Z",
       "orderer_name": "김선국",
       "order_status": "DELIVERED",
@@ -338,7 +338,7 @@
 ## 취소/교환반품 내역
 
 ### 엔드포인트 상세
-```GET /orders/{order_number}/cs-history``` : 해당 주문에서 발생한 취소, 교환, 반품에 대한 상세 이력과 진행 상태를 조회합니다.
+```GET /orders/{order_id}/cs-history``` : 해당 주문에서 발생한 취소, 교환, 반품에 대한 상세 이력과 진행 상태를 조회합니다.
 
 #### **Request Headers**
 | Name | Value / Type | Required | Description |
@@ -357,7 +357,7 @@
 {
   "status": "success",
   "data": {
-    "order_number": "20260403-0000123",
+    "order_id": "20260403-0000123",
     "cs_summary": {
       "has_history": true,
       "cancel_count": 1,
@@ -933,7 +933,7 @@ Res(해야됨)
     },
     "recent_addresses": [
       {
-        "order_number": "20260401-0005",
+        "order_id": "20260401-0005",
         "used_at": "2026-04-01T12:00:00Z",
         "recipient_name": "김선국",
         "zip_code": "48058",
@@ -943,7 +943,7 @@ Res(해야됨)
         "shipping_message": "문 앞에 두고 벨 눌러주세요."
       },
       {
-        "order_number": "20260315-0088",
+        "order_id": "20260315-0088",
         "used_at": "2026-03-15T09:30:00Z",
         "recipient_name": "이멍멍",
         "zip_code": "06035",
