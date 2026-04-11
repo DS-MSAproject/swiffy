@@ -483,7 +483,7 @@ API 설계 관점에서 보면, 이 화면은 **"이 상품이 가질 수 있는
 ---
 
 ## 엔드포인트 상세
-**POST** `/api/v1/wishlist`
+**POST** `/api/v1/wishlist`  
 **PUT** `/api/v1/cart/{cartItemID}/quantity`  
 
 위 quantity는 수량 옆에 있는 변경 (수량변경)  엔드포인트
